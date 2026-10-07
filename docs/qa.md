@@ -1,30 +1,38 @@
-# Validation record — 7 October 2026
+# Voice-first revision — QA notes
 
-## Completed
+Revision date: 7 October 2026.
 
-- Inspected the supplied Figma home frame in the editor and at its 1443px desktop prototype size, including the hero, navigation and industry cards. Studied both supplied glass material references.
-- Research specialist retrieved the existing QuikTalk homepage and checked its business context, industries, integration names and contact links.
-- UI design specialist reviewed the direction and contrast choices. An accessibility specialist reviewed source twice. A separate visual reviewer inspected desktop, mobile, employee cards and contact screenshots. The review's hero-copy correction was applied so mobile visitors also see “agentic systems”.
-- JavaScript syntax validation passed using Node.
-- Final browser overflow checks passed at 1920, 1440, 1024, 768, 390 and 320px. Document scroll width equalled its available content width at every tested size.
-- Browser console inspection returned no warnings or errors during the tested flows.
-- Employee dialog opens with the selected role; Escape closes it and restores focus. Its CTA closes the dialog and lands on the contact CTA with focus preserved.
-- Industry tabs update the panel; arrow-key selection updates selected state and focus. Home and End are implemented in the same handler.
-- Workflow step selection, reset, play and full completion were exercised. The completed example displays “Replay workflow” and its final outcome. Playback has a pause control and stops when the document is hidden.
-- Mobile menu opens and focuses the first link; Escape closes it and restores the menu trigger.
-- FAQ disclosure was exercised. All internal fragment targets resolve.
-- Existing enquiry-page root, privacy policy and terms destinations returned HTTP 200. No lead form was submitted and no email was sent.
-- The site uses local HTML, CSS and JavaScript; it has no third-party scripts, external fonts, image downloads or runtime framework dependencies.
-- Static title, description, canonical URL, Open Graph text, robots and sitemap were checked for agreement.
+## Scope
 
-## Corrected during review
+Home page plus six independent industry demos. Audio was explicitly deferred; the site contains labelled fictional written conversations and illustrative follow-up outputs.
 
-Decorative glow overflow; small-screen headline wrapping; green-heading and small-copy contrast; mobile menu keyboard focus; accessible names matching visible labels; dialog contact focus race; redundant workflow announcements; entrance-transition placement. Main content paragraphs and small metadata were enlarged for readability.
+## Passed
 
-## Scope and limits
+- Build completed for all seven pages. Browser and build JavaScript syntax checks passed.
+- Read-only source audit: seven unique page titles, one H1 per page, no broken internal links or fragments.
+- Browser checks: every page at 1440px and 390px; home and hospitality pages additionally at 1920px, 1024px, 768px and 320px. Document width matched the available viewport at every checked size; no horizontal page overflow.
+- Trades hero link opens the correct standalone page; example-call and after-call links navigate to their sections.
+- Mobile Menu opens, closes with Escape, returns focus to its button and closes after selecting How it works.
+- Native outcome disclosures and the FAQ expand with Enter. Focus on an outcome summary is visible inside its card.
+- Browser console inspection returned no errors or warnings.
+- All six industry pages contain no audio elements while audioUrl is null. No fake audio controls, timings or waveforms.
+- Content review matched enquiries, details, preferences and follow-up messages across all scenarios. Hospitality explicitly confirms 7 pm and shares a booking already created during the call.
+- Visual review found no layout/readability blocker in the desktop trades and mobile outcome screenshots.
+- The How it works section has exactly three steps, presented in a desktop row and a mobile column.
 
-The in-app Chromium browser was used. Screen-reader sessions, Safari/Firefox devices, 200% browser zoom and performance-lab scoring were not verified. Zoom keyboard shortcuts were attempted but did not provide a verifiable zoom state. Reduced-motion and forced-colours fallbacks were reviewed in source. This is not a WCAG conformance certificate.
+## Findings fixed
 
-Workflow activity is an explicitly labelled demonstration, not a live agent backend. Named integrations are examples requiring discovery and configuration. Booking reuses the company's existing enquiry page rather than a newly implemented lead service. The private hosted Site does not change the live QuikTalk domain.
+- Mobile navigation now collapses only when the JavaScript enhancement has initialized. Without JavaScript, the primary navigation remains visible and the menu button stays hidden.
+- Outcome-summary focus outlines are inset so the card cannot clip them.
+- Eight low-contrast text selectors use the darker shared muted colour.
+- Metadata/captions are at least 12px; call conversation text is 15px.
+- Decorative card and process numbers are hidden from assistive technology.
 
-Visual evidence is retained in the workspace's sibling `qa-evidence/` folder, outside the published assets.
+## Limits
+
+No screen-reader session, real telephone call, connected calendar/CRM, customer workflow execution, audio playback or enquiry submission was tested. No audio has been supplied. The existing booking and email destinations are retained; no external message was sent.
+
+Accessibility work consists of source review, contrast calculations and keyboard/browser checks, not a claim of full WCAG conformance. Browser zoom was not separately tested. Motion and forced-colour fallbacks were inspected in source.
+
+The Site remains owner-private and does not replace the public QuikTalk website.
+

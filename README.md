@@ -1,37 +1,44 @@
-# QuikTalk AI — AI workforce website
+# QuikTalk AI — Voice agents and AI employees
 
-A dependency-free marketing website for AI employees and connected agentic systems. The deployable website is in `dist/`; there is no build step.
+A dependency-free, static marketing site with a voice-first home page and six industry demo pages.
 
-## Preview
+## Build and preview
 
-Serve `dist/` with any static HTTP server. For example:
+Run `node scripts/build.mjs` to generate the seven HTML pages, favicon, sitemap and robots file. Serve `dist/` with a static HTTP server, for example `python -m http.server 4173 --bind 127.0.0.1 --directory dist`.
 
-```sh
-python -m http.server 4173 --bind 127.0.0.1 --directory dist
-```
+There are no package dependencies. The browser receives ordinary HTML, shared CSS and a small progressive-enhancement script.
 
-## Source
+## Editing
 
-- `dist/index.html`: semantic page content, SEO metadata and native employee dialog.
-- `dist/styles.css`: shared design tokens, physical glass surfaces, section layouts and responsive breakpoints.
-- `dist/app.js`: shared SVG icon renderer, mobile menu, role details, workflow simulation, industry selector and motion preferences.
-- `dist/robots.txt`, `dist/sitemap.xml`, `dist/_headers`: indexing and static-host headers.
-- `.openai/hosting.json`: private Sites project identity and static output directory.
+- `src/content.mjs`: six illustrative industry scenarios, AI employee roles, conversations, follow-up actions and human-handoff guidance.
+- `scripts/build.mjs`: shared header/footer, home-page sections, industry-page template and page-specific metadata.
+- `dist/styles.css`: design tokens, reflective glass material, layout, responsive rules and accessibility fallbacks.
+- `dist/app.js`: mobile-menu behavior and future audio error handling.
+- `.openai/hosting.json`: existing private Sites identity; preserve it.
 
-## Design references
+Rebuild after changing content or templates. CSS and browser JavaScript remain directly editable in dist, preserving the existing static architecture.
 
-The [provided Figma](https://www.figma.com/design/ID9t5ltpOi0MjLIi598txg/Untitled?node-id=28-127) was inspected in the editor and prototype. Its light `#F7F7F7` canvas, green `#229118` / `#82C87C` swatches, bold dark sans-serif type, split hero, wide glass pill navigation and reflective cards informed this implementation. The supplied square and pill images informed the layered silver rims and internal highlights; the checkerboard reference is not embedded as a background.
+## Industry demonstrations
 
-Glass is made from separately controlled surface tint, rim, inset highlight, reflection and shadow layers. The workforce console and interaction panels carry most of the material treatment; prose and role cards are calmer. Lighter green text was darkened where necessary for contrast.
+Trades & home services, dental & healthcare, real estate, automotive, hospitality and professional services each have an independent URL under `/industries/`.
 
-The [existing QuikTalk website](https://www.quiktalkai.com/) supplied the Auckland/NZ/AU business context, industry workflows, named integration examples and contact destinations. AI employee / agentic system positioning comes from the new brief. No customer logos, testimonials, outcome statistics or performance guarantees have been invented.
+All conversations use clearly labelled fictional callers and details. Follow-up records and messages are illustrative. Five examples create requests awaiting staff confirmation; the hospitality example shows a booking completed during the call using connected availability, followed by shared details, a confirmation and a team note.
 
-## Functional scope
+Audio was explicitly deferred by the user. No play button, waveform, invented duration or simulated recording is displayed. The content model has `audioUrl: null` for each industry. To add an approved demonstration later, supply a supported audio file or HTTPS URL, update the conversation to match it, and rebuild. A native, non-autoplaying audio player will replace the recording notice. Keep the written transcript accessible.
 
-Six employee-role detail dialogs; a six-stage, pausable workflow demonstration; six keyboard-operable industry tabs; native FAQ disclosures; mobile navigation; source-visible content and working anchor links.
+The demos do not execute business workflows or contact anyone.
 
-The workflow is illustrative and does not connect to business systems. Named integration feasibility is confirmed during discovery. The conversion CTA opens the established QuikTalk enquiry page at `https://www.quiktalkai.com/#demo`; email links use the verified `admin@quiktalkai.com` address. This site has no new lead database or submission endpoint. No enquiry was sent during testing.
+## Design and business sources
 
-## Validation
+The supplied Figma Home Desktop frame (28-127) and glass images informed the light canvas, green palette, bold type, split hero, silver-rimmed navigation and dimensional panels. Glass is used selectively. The reference checkerboard is not embedded.
 
-See `docs/qa.md` for the scope and limitations of the checks performed. Source review does not constitute accessibility conformance certification. Private publication does not replace the existing public company website or change its domain.
+The user's latest direction makes voice agents the primary service, AI employees the role-based explanation, and agentic workflows the plain-language after-call story. This supersedes the original attachment's opposite positioning.
+
+The existing QuikTalk website supplied the Auckland/NZ/AU context, industry use cases, integration examples and contact destinations. No testimonials, client logos, measured results or performance guarantees have been invented. Tool compatibility and actions depend on the client's agreed setup.
+
+Conversion links open the existing enquiry page at https://www.quiktalkai.com/#demo or email admin@quiktalkai.com. No lead endpoint, CRM or new external submission is configured here.
+
+## Validation and hosting
+
+See `docs/qa.md` for checked scope and limitations. The existing owner-private Site is retained; this does not replace the company website or change its public domain.
+
