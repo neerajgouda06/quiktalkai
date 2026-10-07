@@ -14,6 +14,8 @@ There are no package dependencies. The browser receives ordinary HTML, shared CS
 - `scripts/build.mjs`: shared header/footer, home-page sections, industry-page template and page-specific metadata.
 - `dist/styles.css`: design tokens, reflective glass material, layout, responsive rules and accessibility fallbacks.
 - `dist/app.js`: mobile-menu behavior and future audio error handling.
+- `dist/motion.css`: shared timings, subtle glass effects, process connector and reduced-motion styles.
+- `dist/motion.js`: finite entrances, scroll progress, pointer light, disclosure transitions and the saved Reduce motion preference.
 - `.openai/hosting.json`: existing private Sites identity; preserve it.
 
 Rebuild after changing content or templates. CSS and browser JavaScript remain directly editable in dist, preserving the existing static architecture.
@@ -41,6 +43,8 @@ Conversion links open the existing enquiry page at https://www.quiktalkai.com/#d
 ## Validation and hosting
 
 See `docs/qa.md` for checked scope and limitations. The existing owner-private Site is retained; this does not replace the company website or change its public domain.
+
+The motion system has no external dependencies and keeps the underlying HTML visible. Read `docs/motion-system.md` before changing animation behavior.
 
 
 ## Brand asset

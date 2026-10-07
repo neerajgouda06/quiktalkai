@@ -794,7 +794,7 @@ nav>a:not(.nav-cta):hover {
 .faq-list details[open] summary .icon {
   transform:rotate(45deg)
 }
-.faq-list details>p {
+.faq-list .disclosure-content>p {
   font-size:14px;
   padding:0 25px 22px 0
 }
@@ -1898,7 +1898,7 @@ nav>a:not(.nav-cta):hover {
     padding-block:21px;
     gap:18px
   }
-  .faq-list details>p {
+  .faq-list .disclosure-content>p {
     font-size:14px;
     padding-right:10px
   }

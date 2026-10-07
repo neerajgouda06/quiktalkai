@@ -36,3 +36,17 @@ Accessibility work consists of source review, contrast calculations and keyboard
 
 The Site remains owner-private and does not replace the public QuikTalk website.
 
+## Motion revision — 8 October 2026
+
+- Read-only specialist reviews covered design/storytelling, frontend performance and accessibility. Findings fixed: focused entrance race, mobile expanded-menu anchor offset, rapid disclosure opacity reversal, connector endpoint thresholds, touch hover and reduced-motion arrow transforms.
+- Rebuilt all seven pages and checked the motion JavaScript syntax successfully.
+- Browser checked home and hospitality at 320px and 768px, home at 390px by 500px, and home/trades at 1440px. No horizontal overflow at the checked sizes.
+- At 390px by 500px, the expanded Menu closed after selecting How it works. Its heading remained below the sticky header (heading top about 197px; header bottom about 77px). Escape closed the menu and returned focus to Menu.
+- The hospitality after-call heading at 320px remained below the sticky header (about 128px versus 77px).
+- FAQ Enter/Space activation and rapid reversal settled correctly. Initially open trades outcome details closed/reopened with keyboard input, with the temporary overflow style removed afterwards.
+- The Reduce motion control changed the page to reduced mode, removed the compact-header transform, completed the connector and persisted to the trades page. Restored full motion through the same control after testing.
+- Browser console inspection during the interaction checks returned no errors or warnings. Hospitality still contained zero audio elements.
+- The three-step connector, sticky glass header and retained headset logo were visually reviewed in desktop and mobile previews.
+
+Limits for this revision: the browser inspection bridge does not expose document.getAnimations, so active-animation counts were not measured. Device-level reduced-motion behavior, coarse-pointer media handling, no-JavaScript fallbacks and lack of idle loops were source-reviewed rather than emulated in the browser. No screen-reader session, frame-rate benchmark or Lighthouse performance score is claimed.
+
