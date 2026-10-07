@@ -4,7 +4,7 @@ A dependency-free, static marketing site with a voice-first home page and six in
 
 ## Build and preview
 
-Run `node scripts/build.mjs` to generate the seven HTML pages, favicon, sitemap and robots file. Serve `dist/` with a static HTTP server, for example `python -m http.server 4173 --bind 127.0.0.1 --directory dist`.
+Run `node scripts/build.mjs` to generate the seven HTML pages, sitemap and robots file. Serve `dist/` with a static HTTP server, for example `python -m http.server 4173 --bind 127.0.0.1 --directory dist`.
 
 There are no package dependencies. The browser receives ordinary HTML, shared CSS and a small progressive-enhancement script.
 
@@ -42,3 +42,7 @@ Conversion links open the existing enquiry page at https://www.quiktalkai.com/#d
 
 See `docs/qa.md` for checked scope and limitations. The existing owner-private Site is retained; this does not replace the company website or change its public domain.
 
+
+## Brand asset
+
+The header, footer and browser icon use the user-supplied transparent headset PNG at dist/assets/quiktalk-headset.png, with the existing QuikTalk AI wordmark. The original image is preserved unchanged.
