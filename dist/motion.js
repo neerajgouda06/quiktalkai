@@ -6,11 +6,17 @@
   const desktopPointer = matchMedia('(min-width: 901px) and (hover: hover) and (pointer: fine)');
   const mobile = matchMedia('(max-width: 640px)');
   const motionButton = document.querySelector('.motion-toggle');
+  const ambientButton = document.querySelector('.ambient-toggle');
+  const ambientVideo = document.querySelector('.atmosphere-video');
+  const ambientScene = document.querySelector('.atmosphere');
+  const videoViewport = matchMedia('(min-width: 901px)');
+  let sceneVisible = false;
+  let videoRequested = false;
   const header = document.querySelector('.site-header');
   const animated = new Map();
   const disclosures = new Set();
   const seen = new WeakSet();
-  const easing = 'cubic-bezier(.22,1,.36,1)';
+  const easing = 'cubic-bezier(.16,1,.3,1)';
   const uiEasing = 'cubic-bezier(.2,.65,.3,1)';
   let userReduced = false;
   let reduced = systemPreference.matches;
@@ -55,6 +61,37 @@
     pointer?.element.classList.remove('light-active');
     pointer = null;
   }
+  function syncAtmosphere() {
+    if (!ambientVideo) return;
+    const canPlay = !reduced && videoViewport.matches && sceneVisible && !document.hidden && !navigator.connection?.saveData;
+    if (ambientButton) {
+      ambientButton.hidden = !videoViewport.matches;
+      ambientButton.disabled = systemPreference.matches;
+      ambientButton.setAttribute('aria-pressed', String(reduced));
+      ambientButton.setAttribute('aria-label', 'Reduce background motion');
+      ambientButton.title = systemPreference.matches ? 'Reduced motion follows your device settings.' : reduced ? 'Enable background motion' : 'Reduce background motion';
+    }
+    if (!canPlay) {
+      ambientVideo.pause();
+      if (videoRequested && (reduced || !videoViewport.matches || navigator.connection?.saveData)) {
+        ambientVideo.removeAttribute('src');
+        ambientVideo.load();
+        ambientVideo.classList.remove('is-ready');
+        videoRequested = false;
+      }
+      return;
+    }
+    if (!videoRequested) {
+      videoRequested = true;
+      ambientVideo.muted = true;
+      ambientVideo.src = ambientVideo.dataset.src;
+    }
+    ambientVideo.play()?.catch(() => { if (ambientVideo.paused || ambientVideo.error) ambientVideo.classList.remove('is-ready'); });
+  }
+  ambientVideo?.addEventListener('playing', () => ambientVideo.classList.add('is-ready'));
+  ambientVideo?.addEventListener('error', () => ambientVideo.classList.remove('is-ready'));
+  videoViewport.addEventListener('change', syncAtmosphere);
+  navigator.connection?.addEventListener('change', syncAtmosphere);
   function updatePreference() {
     reduced = systemPreference.matches || userReduced;
     root.dataset.motion = reduced ? 'reduced' : 'full';
@@ -70,13 +107,16 @@
       clearLight();
     }
     activeStep = -1;
+    syncAtmosphere();
     requestUpdate();
   }
-  motionButton?.addEventListener('click', () => {
+  function toggleMotion() {
     userReduced = !userReduced;
     try { localStorage.setItem('quiktalk-reduce-motion', String(userReduced)); } catch { /* Preference remains active for this page. */ }
     updatePreference();
-  });
+  }
+  motionButton?.addEventListener('click', toggleMotion);
+  ambientButton?.addEventListener('click', toggleMotion);
   systemPreference.addEventListener('change', updatePreference);
   updatePreference();
 
@@ -96,6 +136,7 @@
       nextProgress = Math.max(processProgress, Math.min(1, Math.max(0, start / span)));
     }
     header?.classList.toggle('is-scrolled', compact);
+    if (ambientScene && sceneVisible) ambientScene.style.setProperty('--scene-shift', reduced ? '0px' : `${Math.min(60, scrollY * .065)}px`);
     if (processGrid && (nextProgress !== processProgress || activeStep === -1)) {
       processProgress = nextProgress;
       processGrid.style.setProperty('--process-progress', String(processProgress));
@@ -150,6 +191,10 @@
     '.contact-panel', '.footer-top', '.scenario', '.transcript', '.outcome-list', '.handoff-note'
   ];
   if ('IntersectionObserver' in window) {
+    if (ambientScene) new IntersectionObserver(entries => {
+      sceneVisible = entries.some(entry => entry.isIntersecting);
+      syncAtmosphere();
+    }).observe(ambientScene);
     const reveals = new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (!entry.isIntersecting || seen.has(entry.target)) continue;
@@ -281,15 +326,18 @@
   // One finite entrance. Deep links and restored scroll positions skip it entirely.
   if (!reduced && !location.hash && scrollY < 40) {
     root.classList.add('motion-boot');
-    enter(header, 30, 6);
+    enter(header, 0, -12);
     const hero = document.querySelector('.hero-copy');
     if (hero) {
       enter(hero.querySelector('.eyebrow'), 80, 8);
-      hero.querySelectorAll('.hero-line').forEach((line, index) => enter(line, 140 + index * 80, 16));
+      hero.querySelectorAll('.hero-line').forEach((line, index) => play(line, [
+        { opacity: .1, transform: `translate3d(0,${mobile.matches ? 12 : 32}px,0) scale(.97)` },
+        { opacity: 1, transform: 'translate3d(0,0,0) scale(1)' }
+      ], { delay: 120 + index * 100, duration: mobile.matches ? 600 : 1200 }));
       enter(hero.querySelector('.hero-description'), 240, 10);
       enter(hero.querySelector('.hero-actions'), 340, 8);
       enter(hero.querySelector('.hero-note'), 390, 6);
-      enter(document.querySelector('.hero-demo'), 260, 12);
+      enter(document.querySelector('.hero-demo'), 500, 24);
       enter(document.querySelector('.mini-caller'), 650, 8);
       enter(document.querySelector('.mini-ai'), 900, 8);
       enter(document.querySelector('.hero-after'), 1150, 6);
@@ -316,6 +364,8 @@
   });
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) { settleDecorations(); disclosures.forEach(controller => controller.settle()); clearLight(); }
+    syncAtmosphere();
   });
-  addEventListener('pageshow', event => { if (event.persisted) { settleDecorations(); measureHeader(); } });
+  addEventListener('pagehide', () => ambientVideo?.pause());
+  addEventListener('pageshow', event => { if (event.persisted) { settleDecorations(); measureHeader(); syncAtmosphere(); } });
 })();

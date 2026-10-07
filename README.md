@@ -16,6 +16,7 @@ There are no package dependencies. The browser receives ordinary HTML, shared CS
 - `dist/app.js`: mobile-menu behavior and future audio error handling.
 - `dist/motion.css`: shared timings, subtle glass effects, process connector and reduced-motion styles.
 - `dist/motion.js`: finite entrances, scroll progress, pointer light, disclosure transitions and the saved Reduce motion preference.
+- `dist/reference.css`: the current dark visual system, local Inter fonts, centered cinematic hero and responsive component treatments. This stylesheet loads last.
 - `.openai/hosting.json`: existing private Sites identity; preserve it.
 
 Rebuild after changing content or templates. CSS and browser JavaScript remain directly editable in dist, preserving the existing static architecture.
@@ -50,3 +51,13 @@ The motion system has no external dependencies and keeps the underlying HTML vis
 ## Brand asset
 
 The header, footer and browser icon use the user-supplied transparent headset PNG at dist/assets/quiktalk-headset.png, with the existing QuikTalk AI wordmark. The original image is preserved unchanged.
+
+## Reference redesign — 8 October 2026
+
+The user-supplied Cosmoq HTML/CSS reference supersedes the earlier light/glass presentation. Its centered composition, Inter/Inter Display scale, 1200px content width, thin translucent borders, separate navigation capsule and cinematic horizon are adapted to QuikTalk green. The headset is unchanged and sits on a small light backing for legibility.
+
+All existing text, CTA labels/destinations and metadata (except the theme color) were compared against the preceding revision on all seven pages. `src/content.mjs` is unchanged. No pricing, testimonials, product claims or sections from Cosmoq were added.
+
+Fonts are self-hosted under `dist/assets/fonts` (approximately 137KB total). The supplied reference's 4.73MB atmospheric video is self-hosted at `dist/assets/atmosphere.mp4` and colored green through CSS. The exported 72.7MB HTML, remote Framer runtime and embedded dashboard imagery are not included. `docs/reference-design.md` records measurements, adaptations and asset provenance.
+
+Video starts only on visible desktop layouts with motion enabled and data saver off. It pauses offscreen/when hidden and detaches its source for reduced motion, data saver or smaller layouts. A CSS horizon remains without video or JavaScript. The hero's background-motion control and footer Reduce motion control share the saved preference.

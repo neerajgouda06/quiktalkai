@@ -50,3 +50,17 @@ The Site remains owner-private and does not replace the public QuikTalk website.
 
 Limits for this revision: the browser inspection bridge does not expose document.getAnimations, so active-animation counts were not measured. Device-level reduced-motion behavior, coarse-pointer media handling, no-JavaScript fallbacks and lack of idle loops were source-reviewed rather than emulated in the browser. No screen-reader session, frame-rate benchmark or Lighthouse performance score is claimed.
 
+## Cosmoq visual redesign — 8 October 2026
+
+- Exact normalized text, ordered link labels/destinations and metadata comparison passed for all seven pages. The industry data file hash is unchanged. Only theme-color metadata changed.
+- All seven pages checked at320px and1440px with no horizontal overflow. A decorative industry background initially exceeded the page edge; its bounds were corrected and all six industry routes rechecked.
+- Home checked at390px by550px,768px and1440px. Mobile/tablet video had no src; desktop video fired its playing event and displayed the green atmospheric background. Title used Inter Display at82px desktop and46px mobile.
+- Hero motion reduction toggled aria-pressed and removed video src. Returning to full motion restored normal behavior. The label remains stable so pressed state is unambiguous.
+- Expanded mobile menu closed on How it works; heading was below the sticky header. Escape closed the menu. Tablet hero actions were centered after correcting an inherited alignment rule.
+- FAQ and after-call native disclosures opened with Enter and reversed with Space. Temporary overflow cleared after completion. A320px expanded outcome showed its complete illustrative message and visible inset focus outline.
+- Console inspection returned no errors or warnings. No call audio or fake playback controls were added.
+- Desktop hero, industry cards and whole-page screenshots were reviewed against the supplied reference. Final visual review passed with no clipped sections or remaining light-theme surfaces. A translucent dark backing fixed the small hero note's contrast over the bright horizon.
+- Source review covered dynamic data-saver changes, reduced motion, offscreen/hidden pause, source detachment at smaller sizes, and back-forward cache resynchronization. No idle JavaScript animation loop was added.
+
+Limits: this is a visual, keyboard and responsive browser review plus source inspection. It does not claim screen-reader certification, device-level reduced-motion emulation, measured video frame rate, Lighthouse performance scores or live workflow/audio integration. Full template motion could not be established from its captured export; the implemented timing is deliberately bounded and documented in reference-design.md.
+
