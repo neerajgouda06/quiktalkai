@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://quiktalk-ai-workforce.randhawa787.chatgpt.site/sitemap.xml

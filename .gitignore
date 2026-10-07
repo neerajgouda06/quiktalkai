@@ -1,0 +1,6 @@
+*.tar.gz
+*.zip
+.sites-runtime/
+.env
+.env.*
+node_modules/
