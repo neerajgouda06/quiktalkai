@@ -22,12 +22,10 @@ Animations pause offscreen and when the document is hidden. Device reduced motio
 
 ## Asset provenance
 
-The user requested faithful recreation of the supplied public reference. The three brand-free reference images below are self-hosted; CSS tints them to the site's green palette.
+The final implementation contains no newly copied COSMOQ images or logos. `dist/assets/features-orb-original.webp` is original artwork produced once with the built-in image-generation tool, then encoded to WebP with alpha preserved. It is 1254×1254 and displayed at 36, 145 or 240px. Abstract background lighting is native CSS gradients. The connection paths, floating source nodes and QuikTalk role cards are native interface diagrams. All image dimensions are reserved and images are lazy loaded.
 
-- `features-technology.webp`: https://framerusercontent.com/images/4ABnXaFshXBVkaMyEU2NjeeqE.webp (788×922)
-- `features-data.png`: https://framerusercontent.com/images/rYyqmKb6ZW8scPMDoDnkLicukfc.png (591×692)
-- `features-orb.png`: https://framerusercontent.com/images/LSyUU59PqiiX3GNMxMMlFDJb8I.png (478×478)
+QuikTalk's existing headset is preserved. Usage cards show the site's receptionist, booking assistant and enquiry assistant. The original generated PNG remains outside the published site at `qa-evidence/original-features-orb.png`.
 
-QuikTalk's existing headset is preserved. The reference's COSMOQ wordmark and baked-in Banking Agent card labels are not used. Usage cards instead show the site's receptionist, booking assistant and enquiry assistant. Total added raster assets are approximately 298KB. All image dimensions are reserved and images are lazy loaded.
+Generation prompt: Create one entirely original centered spherical green-tinted frosted-glass orb on genuine transparent alpha, with soft mint rim light, dark forest-green central refractions, emerald reflections and a pale-lime lower-left glow. Keep an even transparent margin, restrained polished 3D rendering, smooth optical gradients legible at 145–240px, and no text, logo, headset, icons, interface, background, checkerboard, hard shadow, particles, rings or extra objects. Do not reference or copy COSMOQ imagery. Built-in image generation returned 1254×1254; its pixels and transparency were preserved.
 
 Reference inspection and focused browser QA evidence are in the workspace's `qa-evidence/features-reference-*` and `qa-evidence/features-qa/` folders, outside the published site.

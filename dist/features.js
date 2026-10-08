@@ -25,7 +25,9 @@
   function update() {
     frame = 0;
     const viewportHeight = window.innerHeight;
-    const activeLine = small.matches ? 190 : 220;
+    const anchorTop = (parseFloat(getComputedStyle(root).scrollPaddingTop) || 0)
+      + (parseFloat(getComputedStyle(slots[0]).scrollMarginTop) || 0);
+    const activeLine = Math.max(small.matches ? 190 : 220, anchorTop + 20);
     let active = 0;
     slots.forEach((slot, index) => {
       const box = slot.getBoundingClientRect();
@@ -84,6 +86,9 @@
     });
   });
   section.addEventListener('focusin', event => {
+    // The sticky category rail already clears the header. Its focus must not
+    // invoke the shared instant header correction during native anchor scroll.
+    if (event.target.closest('.features-nav-link')) event.stopPropagation();
     const card = event.target.closest('.feature-card');
     if (card) card.style.setProperty('--feature-x', '0px');
     headingAnimation?.cancel();

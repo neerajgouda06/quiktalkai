@@ -89,3 +89,5 @@
 html[data-motion=reduced] .integration-story *,html[data-motion=reduced] .integration-story *::before{animation:none!important;transition:none!important}
 html[data-motion=reduced] .integration-card,html[data-motion=reduced] .integration-call,html[data-motion=reduced] .integration-endpoint,html[data-motion=reduced] .integration-understanding,html[data-motion=reduced] .integration-scene::before{transform:none!important;opacity:1!important;filter:none!important}
 @media print{.integration-rail{display:none}.integration-layout{display:block}.integration-card{break-inside:avoid;transform:none!important;filter:none!important;opacity:1!important}.integration-story *{animation:none!important}}
+/* Two-line process labels need clearance above the destination on small phones. */
+@media(max-width:809px){.integration-branches{height:78px}}

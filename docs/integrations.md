@@ -22,3 +22,11 @@ QuikTalk's green palette, supplied headset identity, exact requested heading/sup
 All eight cards and the ecosystem exist in static HTML. Native fragment links remain functional without JavaScript. Enhanced navigation respects modified clicks and moves keyboard focus to the chosen card. Device reduced-motion preferences and the site's saved Reduce motion preference remove transforms, blur, transitions and decorative loops. Hidden documents pause ongoing visual loops. Brand assets are local; diagrams require no animation library.
 
 Asset provenance and verified source content are recorded in `integration-assets.md`. Browser validation evidence is kept outside the deployed site in `qa-evidence/integrations-after/`.
+
+## Validation — 9 October 2026
+
+Browser checks covered 1440, 1280, 1024, 768, 430, 390 and 375px. All eight cards fit the viewport with readable, unclipped content; all 33 section image instances loaded. Desktop rail selection tracked each card. Keyboard Tab/Enter navigation, device reduced motion (zero running section animations) and the no-JavaScript fallback passed. Desktop and phone cards and ecosystem captures were also visually inspected.
+
+A 375px wrapped workflow label initially touched the destination panel. An extra 18px of mobile connector space fixed the overlap; a focused 375/390px retest checked all eight scenes at each size. No label overlaps remained.
+
+The existing page has 3–6px of mobile document overflow from the earlier follow-up section. Hiding the entire new integration section leaves that width unchanged; the integration section itself remains exactly within each viewport. This baseline behavior was preserved by agreement with the coordinated homepage work. It is recorded in `overflow.json`, separately from integration results.
