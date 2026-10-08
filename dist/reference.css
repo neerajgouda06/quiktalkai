@@ -51,7 +51,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,audio:focus-visible{o
 .atmosphere-video.is-ready{opacity:.86}
 .atmosphere-frost{position:absolute;inset:0;background:linear-gradient(#03050448 8%,#0305046b 30%,transparent 80%)}
 .atmosphere-fallback{position:absolute;inset:0;background:#030504}
-.atmosphere-fallback span{position:absolute;left:-20%;right:-20%;height:680px;top:710px;border-radius:50%;background:#030504;box-shadow:0 -2px 2px #d0f8a7,0 -8px 20px #91d958aa,0 -35px 90px #39864088,0 -90px 170px #23672855}
+.atmosphere-fallback span{position:absolute;left:-20%;right:-20%;height:680px;top:710px;transform:translateY(-100px);border-radius:50%;background:#030504;box-shadow:0 -2px 2px #d0f8a7,0 -8px 20px #91d958aa,0 -35px 90px #39864088,0 -90px 170px #23672855}
 .atmosphere-fallback i{position:absolute;top:22%;height:63%;width:15%;background:linear-gradient(transparent,#8fc47645);filter:blur(48px);transform:rotate(10deg)}
 .atmosphere-fallback i:nth-child(1){left:18%;width:12%}.atmosphere-fallback i:nth-child(2){left:42%;top:30%;transform:rotate(-8deg)}.atmosphere-fallback i:nth-child(3){right:12%;background:linear-gradient(transparent,#316c574d)}
 .ambient-toggle{position:absolute;right:40px;top:555px;z-index:3;width:38px;height:38px;display:grid;place-items:center;border:1px solid #ffffff30;background:#030504a8;border-radius:50%;color:#c6d4c8;transition:background .2s}
