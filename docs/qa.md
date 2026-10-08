@@ -6,6 +6,17 @@ Revision date: 7 October 2026.
 
 Home page plus six independent industry demos. Audio was explicitly deferred; the site contains labelled fictional written conversations and illustrative follow-up outputs.
 
+## Text and orb section — 9 October 2026
+
+- Compared the supplied screenshot and live COSMOQ component source. Desktop now has five lines of Inter Display regular, a 519.64px sphere and 72.07px type at 1848px. Independent visual review found no blocking defect in desktop or 390px mobile screenshots.
+- Headless Edge/Playwright checked 1848, 1440, 1024, 810, 809, 768, 390 and 320px widths. Forward/reverse word opacities match, intermediate values interpolate, and both endpoints settle exactly. Refresh restores progress. Mobile sphere moves while visible independently of the text.
+- Device reduced motion, the existing saved motion toggle, and JavaScript-disabled white text passed. Browser runtime error list is empty. The six industry HTML files retain their pre-edit hashes. Homepage markup outside the added section is preserved.
+- No additional horizontal overflow. The saved baseline and finished page both measure 393px at a 390px viewport and 330px at 320px because of an existing decorative hero light. That unrelated hero is preserved; the new section is contained at every checked width.
+- Thirteen deterministic checks cover scroll reversibility, initialization/restoration, hidden-page wake, font/resize handling, preference changes, missing-section behavior, frame coalescing and termination. 600 synthetic scroll events coalesce into one queued animation frame. Visible opacity/transform layers receive compositor hints that are released offscreen.
+- Performance limitation: on this test host, the final desktop scrolling sample measured a 32.4ms median frame and 203.7ms p95; idle was 16.5ms median and 24.1ms p95. JavaScript callbacks measured 0.1ms median / 13.6ms p95. Stable 60fps while scrolling is **not verified** and must not be claimed. A real-device performance pass remains advisable. Source/build syntax checks passed.
+
+Evidence is saved outside the deployed project in `../qa-evidence/orb-browser-report.json`, `orb-performance-report.json`, `orb-motion-vm-results.json`, and `orb-*.png`.
+
 ## Passed
 
 - Build completed for all seven pages. Browser and build JavaScript syntax checks passed.

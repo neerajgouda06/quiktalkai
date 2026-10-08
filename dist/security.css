@@ -1,0 +1,62 @@
+/* The privacy section shares the site's tokens and has no global selectors. */
+.enterprise-security{padding:80px 40px;isolation:isolate;overflow:clip}
+.security-container{max-width:1200px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.security-copy{min-width:0}
+.security-label{display:flex;align-items:center;gap:12px;min-height:58px;padding-bottom:12px;border-bottom:1px solid #8bc69c29;font-size:16px;line-height:1.5;color:var(--muted,#a9b4ae)}
+.security-label .icon{width:32px;height:32px;color:#d6e3d4;flex:none}
+.enterprise-security h2{margin:24px 0 28px;font-family:'Inter Display',Inter,Arial,sans-serif;font-size:56px;font-weight:500;line-height:1.2;letter-spacing:-.04em;color:var(--ink,#f4f7f3)}
+.security-intro{max-width:530px;margin:0;font-size:16px;line-height:1.5;color:var(--muted,#a9b4ae)}
+.security-principles{display:flex;flex-direction:column;gap:24px;max-width:400px;margin:40px 0 0;padding:0;list-style:none}
+.security-principles li{display:flex;align-items:center;gap:10px;padding:10px 12px;min-height:44px;border:1px solid #8bc69c29;border-radius:12px;color:#d8e4d9;font-size:16px;line-height:1.4;transition:border-color .35s,background .35s}
+.security-principles li:hover{border-color:#b0dda74d;background:#b0dda708}
+.security-principles .icon{flex:none;width:22px;height:22px;color:#cae0c3}
+.security-visual{position:relative;min-width:0;align-self:center}
+.security-parallax{transform:translate3d(0,var(--security-drift,0px),0);transition:transform .55s cubic-bezier(.2,.65,.3,1)}
+.security-diagram{display:block;width:100%;height:auto;overflow:visible}
+.security-plane{opacity:.5}
+.security-illumination{opacity:.2}
+.security-plane-symbol{opacity:.15}
+.security-layer--0 .security-plane{opacity:.95}
+.security-layer--0 .security-illumination{opacity:.55}
+.security-layer--0 .security-plane-symbol{opacity:.65}
+.security-trace{stroke-dasharray:15 85;stroke-dashoffset:15;opacity:0}
+.security-layer-key{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;list-style:none;padding:0 12px 0 28px;margin:-8px 0 0}
+.security-layer-key li{display:flex;align-items:baseline;gap:9px;font-size:12px;line-height:1.5;color:#a9b4ae}
+.security-layer-key li>span{font-size:11px;font-variant-numeric:tabular-nums;letter-spacing:.08em;color:#a7d39b}
+/* Sequential illumination echoes the reference's four security planes. */
+.security-motion .security-plane{animation:security-plane-cycle 6s cubic-bezier(.12,.23,.5,1) infinite;animation-delay:calc(var(--layer-index)*.6s)}
+.security-motion .security-illumination{animation:security-light-cycle 6s cubic-bezier(.12,.23,.5,1) infinite;animation-delay:calc(var(--layer-index)*.6s)}
+.security-motion .security-layer-float{animation:security-float 8s ease-in-out infinite;animation-delay:calc(var(--layer-index)*-.7s)}
+.security-motion .security-trace{animation:security-trace 6s cubic-bezier(.3,.1,.4,1) infinite;animation-delay:calc(var(--layer-index)*.6s)}
+.enterprise-security:not(.security-in-view) *,.enterprise-security.security-paused *{animation-play-state:paused!important}
+@keyframes security-plane-cycle{0%,12%,100%{opacity:.45}28%,42%{opacity:1}60%,85%{opacity:.6}}
+@keyframes security-light-cycle{0%,12%,100%{opacity:.15}28%,42%{opacity:.85}65%,85%{opacity:.28}}
+@keyframes security-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes security-trace{0%,12%{stroke-dashoffset:15;opacity:0}22%{opacity:.6}54%{stroke-dashoffset:-100;opacity:0}100%{stroke-dashoffset:-100;opacity:0}}
+@media(min-width:810px) and (max-width:1199px){
+ .security-container{grid-template-columns:minmax(0,1fr);gap:48px}
+ .enterprise-security h2{font-size:45px}
+ .security-intro{max-width:600px}
+ .security-visual{width:min(100%,560px);justify-self:center}
+ .security-principles{gap:18px}
+ .security-layer-key{padding-left:12px;gap:12px}
+}
+@media(max-width:809px){
+ .enterprise-security{padding:64px 20px}
+ .security-container{grid-template-columns:minmax(0,1fr);gap:24px}
+ .enterprise-security h2{font-size:36px;margin:24px 0}
+ .security-intro{max-width:570px}
+ .security-principles{max-width:none;margin-top:32px;gap:16px}
+ .security-principles li{padding:10px 12px}
+ .security-visual{width:min(100%,560px);justify-self:center}
+ .security-layer-key{margin:-8px 0 0;padding:0 8px;gap:12px 16px}
+ .security-motion .security-layer-float{animation:none}
+ .security-parallax{transform:none!important}
+}
+@media(max-width:359px){.enterprise-security h2{font-size:32px}.security-layer-key{grid-template-columns:1fr 1fr;gap:10px}.security-principles li{font-size:14px}.security-layer-key li{gap:5px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){
+ .enterprise-security *{animation:none!important;transition:none!important}
+ .security-parallax{transform:none!important}
+}
+html[data-motion="reduced"] .enterprise-security *{animation:none!important;transition:none!important}
+html[data-motion="reduced"] .security-parallax{transform:none!important}

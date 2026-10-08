@@ -29,6 +29,16 @@
   let activeStep = -1;
   let processThresholds = [0, .5, 1];
   let processSpan = 1;
+  const exceptionalities = [];
+  const statement = document.querySelector('.voice-statement');
+  const statementText = statement?.querySelector('.statement-text');
+  const statementInks = statement ? [...statement.querySelectorAll('.statement-ink')] : [];
+  const statementOrb = statement?.querySelector('.statement-orb');
+  const statementSurface = statement?.querySelector('.statement-orb-surface');
+  let statementProgress = null;
+  let orbProgress = null;
+  let statementTime = 0;
+  let statementOpacities = [];
 
   try { userReduced = localStorage.getItem('quiktalk-reduce-motion') === 'true'; } catch { /* Device preferences still work when storage is unavailable. */ }
   function token(name, fallback) {
@@ -105,6 +115,10 @@
       settleDecorations();
       disclosures.forEach(controller => controller.settle());
       clearLight();
+      exceptionalities.forEach(card => {
+        card.entered = true;
+        card.element.classList.remove('is-reveal-pending', 'is-art-running');
+      });
     }
     activeStep = -1;
     syncAtmosphere();
@@ -122,12 +136,15 @@
 
   // Layout dimensions stay fixed: the sticky state changes only the glass and scale.
   function requestUpdate() { if (!frame) frame = requestAnimationFrame(updateFrame); }
-  function updateFrame() {
+  function updateFrame(time) {
     frame = 0;
     // Read geometry first, then commit visual-only changes in one frame.
     const compact = scrollY > 50;
     const processRect = processGrid && processVisible && !reduced ? processGrid.getBoundingClientRect() : null;
     const lightRect = pointer && !reduced && desktopPointer.matches ? pointer.element.getBoundingClientRect() : null;
+    const cardRects = exceptionalities.map(card => card.element.getBoundingClientRect());
+    const statementRect = statementText?.getBoundingClientRect();
+    const orbRect = statementOrb?.getBoundingClientRect();
     let nextProgress = processProgress;
     if (reduced) nextProgress = 1;
     else if (processRect) {
@@ -150,8 +167,66 @@
       pointer.element.style.setProperty('--light-x', `${pointer.x - lightRect.left - 9}px`);
       pointer.element.style.setProperty('--light-y', `${pointer.y - lightRect.top - 9}px`);
     }
+    updateStatement(statementRect, orbRect, time);
+    exceptionalities.forEach((card, index) => {
+      const rect = cardRects[index];
+      const visibleHeight = Math.max(0, Math.min(rect.bottom, innerHeight) - Math.max(rect.top, 0));
+      card.element.classList.toggle('is-art-running', !reduced && !document.hidden && visibleHeight > 0);
+      // Framer's threshold uses the smaller of element and viewport height.
+      // Reading this in the existing scroll frame also handles short landscape screens.
+      if (!card.entered && visibleHeight / Math.max(1, Math.min(rect.height, innerHeight)) >= .5) {
+        card.entered = true;
+        card.element.classList.remove('is-reveal-pending');
+        play(card.element, [
+          { opacity: 0, transform: `translate3d(0,${innerWidth <= 809 ? 12 : 20}px,0)` },
+          { opacity: 1, transform: 'translate3d(0,0,0)' }
+        ], { duration: 400, delay: innerWidth <= 809 ? Math.min(card.delay, 100) : card.delay, easing: 'cubic-bezier(.12,.23,.5,1)' });
+      }
+    });
+  }
+  function updateStatement(rect, orbRect, time) {
+    if (!rect || document.hidden) return;
+    // Promote only visible animated layers; release their memory offscreen.
+    statement.classList.toggle('is-in-view', !reduced && ((rect.bottom > 0 && rect.top < innerHeight) || (orbRect.bottom > 0 && orbRect.top < innerHeight)));
+    // The reference maps text top: viewport bottom -> viewport center, +140px.
+    // A longer mobile paragraph gets enough reading distance without pinning.
+    const offset = innerWidth <= 809 ? 0 : Math.min(140, innerHeight * .18);
+    const distance = Math.max(innerHeight * .5, rect.height - innerHeight * .35);
+    const target = reduced ? 1 : Math.max(0, Math.min(1, (innerHeight - offset - rect.top) / distance));
+    const delta = Math.min(64, Math.max(0, time - statementTime));
+    statementTime = time;
+    // First render and preference changes settle immediately. Scroll easing is
+    // time-based (65ms), reversible, and the shared rAF stops when it settles.
+    if (statementProgress === null || reduced || Math.abs(target - statementProgress) < .0001) statementProgress = target;
+    else statementProgress += (target - statementProgress) * (1 - Math.exp(-delta / 65));
+    if (Math.abs(target - statementProgress) < .0001) statementProgress = target;
+    const tokenCount = statementInks.length * 2 - 1;
+    statementInks.forEach((ink, index) => {
+      const opacity = Math.max(0, Math.min(1, (statementProgress * (tokenCount + .6) - index * 2) / 1.6));
+      const value = opacity.toFixed(4);
+      if (statementOpacities[index] !== value) {
+        ink.style.opacity = value;
+        statementOpacities[index] = value;
+      }
+    });
+    statement.classList.add('is-scroll-ready');
+    // Track the orb separately: on phones it enters after the paragraph.
+    // Remove the previous visual translation from its measured geometry.
+    const previousDrift = reduced || orbProgress === null ? 0 : (orbProgress - .5) * 14;
+    const orbTop = orbRect.top - previousDrift;
+    const orbTarget = reduced ? .5 : Math.max(0, Math.min(1, (innerHeight - orbTop) / (innerHeight + orbRect.height)));
+    if (orbProgress === null || reduced || Math.abs(orbTarget - orbProgress) < .0001) orbProgress = orbTarget;
+    else orbProgress += (orbTarget - orbProgress) * (1 - Math.exp(-delta / 65));
+    if (Math.abs(orbTarget - orbProgress) < .0001) orbProgress = orbTarget;
+    const drift = reduced ? 0 : (orbProgress - .5) * 14;
+    statementOrb.style.transform = `translate3d(${(drift * -.25).toFixed(2)}px,${drift.toFixed(2)}px,0)`;
+    statementSurface.style.transform = `rotate(${(75 + (reduced ? 0 : (orbProgress - .5) * 10)).toFixed(2)}deg)`;
+    if (!reduced && (Math.abs(target - statementProgress) >= .0001 || Math.abs(orbTarget - orbProgress) >= .0001)) requestUpdate();
   }
   addEventListener('scroll', requestUpdate, { passive: true });
+  // Font loading can change line wraps without a window resize.
+  if (statementText && 'ResizeObserver' in window) new ResizeObserver(requestUpdate).observe(statementText);
+  document.fonts?.ready.then(requestUpdate);
   function measureHeader() {
     if (header) {
       const style = getComputedStyle(header);
@@ -186,8 +261,8 @@
   // before observation, if the script fails, and if the API is unavailable.
   const revealSelectors = [
     '.value-strip', '.section-heading', '.center-heading', '.industry-card',
-    '.employee-copy', '.employee-list', '.follow-panel', '.control-section>div:first-child',
-    '.control-grid', '.integrations', '.faq-section>div:first-child', '.faq-list',
+    '.employee-copy', '.employee-list', '.follow-panel',
+    '.integrations', '.faq-section>div:first-child', '.faq-list',
     '.contact-panel', '.footer-top', '.scenario', '.transcript', '.outcome-list', '.handoff-note'
   ];
   if ('IntersectionObserver' in window) {
@@ -216,6 +291,19 @@
       }
     }, { rootMargin: '0px 0px 35px 0px', threshold: 0 });
     document.querySelectorAll(revealSelectors.join(',')).forEach(element => reveals.observe(element));
+  }
+
+  // The reference uses independent one-time entrances, not a scroll-scrubbed pin.
+  // Artwork clocks run only while visible. With no JS/observer all content is static.
+  if ('IntersectionObserver' in window && typeof Element.prototype.animate === 'function') {
+    document.querySelectorAll('.exceptionalities [data-card-index]').forEach((element, index) => {
+      const entered = reduced || element.contains(document.activeElement);
+      exceptionalities.push({ element, entered, delay: [0, 100, 0, 100, 200][index] || 0 });
+      element.classList.toggle('is-reveal-pending', !entered);
+    });
+    const cardObserver = new IntersectionObserver(requestUpdate, { threshold: [0, .5, 1] });
+    exceptionalities.forEach(card => cardObserver.observe(card.element));
+    requestUpdate();
   }
 
   processGrid = document.querySelector('.how-grid');
@@ -350,6 +438,12 @@
 
   // Keyboard users should never have to wait for a visual entrance to finish.
   document.addEventListener('focusin', event => {
+    exceptionalities.forEach(card => {
+      if (card.element.contains(event.target)) {
+        card.entered = true;
+        card.element.classList.remove('is-reveal-pending');
+      }
+    });
     for (const [animation, element] of animated) {
       if (element.contains(event.target)) { animation.cancel(); animated.delete(animation); }
     }
@@ -363,9 +457,15 @@
     }
   });
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) { settleDecorations(); disclosures.forEach(controller => controller.settle()); clearLight(); }
+    if (document.hidden) {
+      settleDecorations();
+      disclosures.forEach(controller => controller.settle());
+      clearLight();
+      exceptionalities.forEach(card => card.element.classList.remove('is-art-running'));
+    }
     syncAtmosphere();
+    requestUpdate();
   });
   addEventListener('pagehide', () => ambientVideo?.pause());
-  addEventListener('pageshow', event => { if (event.persisted) { settleDecorations(); measureHeader(); syncAtmosphere(); } });
+  addEventListener('pageshow', event => { if (event.persisted) { statementProgress = null; settleDecorations(); measureHeader(); syncAtmosphere(); } });
 })();

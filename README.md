@@ -4,7 +4,7 @@ A dependency-free, static marketing site with a voice-first home page and six in
 
 ## Build and preview
 
-Run `node scripts/build.mjs` to generate the seven HTML pages, sitemap and robots file. Serve `dist/` with a static HTTP server, for example `python -m http.server 4173 --bind 127.0.0.1 --directory dist`.
+Run `node scripts/build.mjs` to generate the seven HTML pages, sitemap and robots file. Then run `node scripts/preview.mjs` and open http://127.0.0.1:4173/. The preview serves the existing `dist/` files. Keep the process running while viewing the site; press Ctrl+C to stop it. To use another port in PowerShell, set `$env:PORT = 4174` before starting the preview and open http://127.0.0.1:4174/ instead.
 
 There are no package dependencies. The browser receives ordinary HTML, shared CSS and a small progressive-enhancement script.
 
