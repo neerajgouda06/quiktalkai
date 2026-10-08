@@ -17,6 +17,7 @@ There are no package dependencies. The browser receives ordinary HTML, shared CS
 - `dist/motion.css`: shared timings, subtle glass effects, process connector and reduced-motion styles.
 - `dist/motion.js`: finite entrances, scroll progress, pointer light, disclosure transitions and the saved Reduce motion preference.
 - `dist/reference.css`: the current dark visual system, local Inter fonts, centered cinematic hero and responsive component treatments. This stylesheet loads last.
+- `src/grain.mjs`, `dist/grain.css`, `dist/assets/grain.svg`: shared decorative background grain. See `docs/grain-system.md` for reference measurements, placement, tuning and validation.
 - `.openai/hosting.json`: existing private Sites identity; preserve it.
 
 Rebuild after changing content or templates. CSS and browser JavaScript remain directly editable in dist, preserving the existing static architecture.

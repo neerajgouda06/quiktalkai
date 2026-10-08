@@ -1,3 +1,5 @@
+import { grain } from './grain.mjs';
+
 // Original vector diagram: four translucent planes represent the boundaries
 // agreed for a QuikTalk AI employee. No reference artwork is used.
 const layerNames = ['Approved information', 'Agreed actions', 'Human handoff', 'Review before launch'];
@@ -28,7 +30,7 @@ const securityDiagram = `<svg class="security-diagram" viewBox="0 0 560 500" fil
 </svg>`;
 
 export function enterpriseSecurity(icon) {
-  return `<section class="enterprise-security" id="data-and-privacy" aria-labelledby="security-title">
+  return `<section class="enterprise-security grain-surface" id="data-and-privacy" aria-labelledby="security-title">${grain}
     <div class="security-container">
       <div class="security-copy">
         <div class="security-label">${icon('shield')}<span>DATA AND PRIVACY</span></div>

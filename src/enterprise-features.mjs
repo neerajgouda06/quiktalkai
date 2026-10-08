@@ -1,4 +1,5 @@
 import { featuresArt } from './features-art.mjs';
+import { grain } from './grain.mjs';
 
 // This section is deliberately isolated from the existing homepage components.
 export function enterpriseFeatures(icon) {
@@ -27,7 +28,7 @@ export function enterpriseFeatures(icon) {
       cta: 'Book a demo', href: 'https://www.quiktalkai.com/#demo',
     },
   ];
-  return `<section class="enterprise-features" id="enterprise-features" aria-labelledby="features-title">
+  return `<section class="enterprise-features grain-surface" id="enterprise-features" aria-labelledby="features-title">${grain}
     <div class="features-container">
       <div class="features-heading">
         <div class="features-label">${icon('note')}<span>FEATURES</span></div>

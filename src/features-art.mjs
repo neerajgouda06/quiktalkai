@@ -1,3 +1,5 @@
+import { grain } from './grain.mjs';
+
 // Original generated orb, existing QuikTalk mark, and native interface diagrams.
 // Every graphic is decorative; the accessible content belongs to the surrounding card.
 const artIcon = (path, className = '') => `<svg class="feature-art-icon ${className}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="${path}"/></svg>`;
@@ -23,7 +25,7 @@ const wirePaths = [1, 41, 81, 181, 221, 261].map((x, index) => [
   `M${x} 0C${x} 65 137 38 137 92${index === 5 ? 'V317' : ''}`, 'translate(0 0)',
 ]);
 const wires = wirePaths.map(([d, transform], i) => `<g transform="${transform}"><path class="feature-art-wire" d="${d}"/><path class="feature-art-signal" d="${d}" pathLength="100" style="--feature-art-delay:${i * -.37}s"/></g>`).join('');
-const background = () => '<div class="feature-art-background"></div>';
+const background = () => `<div class="feature-art-background">${grain}</div>`;
 const globe = (className = '') => `<img class="feature-art-orb ${className}" src="/assets/features-orb-original.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async">`;
 
 export const featuresArt = [

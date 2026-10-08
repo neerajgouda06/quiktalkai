@@ -1,0 +1,43 @@
+/* Static, monochrome grain: Cosmoq's texture is static above its moving video.
+   Keep the shared texture below content, never on a page-wide fixed overlay. */
+.grain-surface {
+  position: relative;
+  isolation: isolate;
+}
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: block;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  background: url('/assets/grain.svg') repeat 0 0 / 512px 512px;
+  opacity: calc(var(--grain-opacity, .025) * var(--grain-strength, 1));
+  mix-blend-mode: normal;
+}
+/* These are already decorative containers behind the hero and artwork. */
+.atmosphere > .grain-overlay,
+.feature-art-background > .grain-overlay {
+  z-index: 0;
+  --grain-opacity: .05;
+}
+.feature-art-background > .grain-overlay { --grain-opacity: .04; }
+.follow-panel > .grain-overlay,
+.integration-ecosystem > .grain-overlay { --grain-opacity: .03; }
+.footer > .grain-overlay { --grain-opacity: .025; }
+/* Let broad transparent sections meet the untouched canvas without seams. */
+:is(.voice-statement, .how-section, .enterprise-features, .enterprise-security,
+    .industry-hero, .contact-section) > .grain-overlay {
+  mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent);
+}
+/* Static at every size; no animation, repaint loop, JS or promoted GPU layer.
+   Slightly quieter on small/coarse-pointer screens, including reduced motion. */
+@media (max-width: 809px), (pointer: coarse) {
+  .grain-overlay { --grain-strength: .8; }
+}
+@media (forced-colors: active), print {
+  .grain-overlay { display: none; }
+}

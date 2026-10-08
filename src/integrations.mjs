@@ -1,3 +1,5 @@
+import { grain } from './grain.mjs';
+
 const connections = [
   { name: 'Xero & MYOB', logos: ['xero', 'myob'] },
   { name: 'Google Calendar', logos: ['googlecalendar'] },
@@ -16,7 +18,7 @@ const paths = 'M400 0v12C400 42 100 8 100 64M400 0v12C400 42 300 8 300 64M400 0v
 export function integrations() {
   return `<section class="integration-story" id="integrations" aria-labelledby="integration-ecosystem-title">
     <div class="integration-container">
-      <div class="integration-ecosystem" id="integration-ecosystem">
+      <div class="integration-ecosystem grain-surface" id="integration-ecosystem">${grain}
         <div class="integration-ecosystem-copy">
           <span class="integration-category">ONE CONNECTED ECOSYSTEM</span>
           <h2 id="integration-ecosystem-title">One conversation.<br>Everything connected.</h2>
