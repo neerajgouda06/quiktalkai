@@ -71,7 +71,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,audio:focus-visible{o
 .hero-note .icon{color:#9fd78c}
 .atmosphere{position:absolute;top:-100px;left:0;right:0;height:1030px;z-index:-1;pointer-events:none;overflow:hidden;mask-image:linear-gradient(#000 78%,transparent 100%)}
 /* The still and video share the reference's geometry and one brand grade. */
-.atmosphere-scene{position:absolute;top:16px;left:0;width:100%;height:857px;overflow:hidden;filter:grayscale(1) sepia(.5) hue-rotate(67deg) saturate(1.7) brightness(1);-webkit-mask-image:linear-gradient(transparent,#000 5%,#000 85.7%,transparent);mask-image:linear-gradient(transparent,#000 5%,#000 85.7%,transparent)}
+.atmosphere-scene{position:absolute;top:16px;left:0;width:100%;height:857px;overflow:hidden;filter:grayscale(1) sepia(1) hue-rotate(47deg) saturate(2.2) brightness(.62);-webkit-mask-image:linear-gradient(transparent,#000 5%,#000 85.7%,transparent);mask-image:linear-gradient(transparent,#000 5%,#000 85.7%,transparent)}
 .atmosphere-poster,.atmosphere-video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 .atmosphere-video{opacity:0;transition:opacity 1.4s;mix-blend-mode:normal}
 .atmosphere-video.is-ready{opacity:1}
