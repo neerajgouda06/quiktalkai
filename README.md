@@ -19,6 +19,7 @@ There are no package dependencies. The browser receives ordinary HTML, shared CS
 - `dist/reference.css`: the current dark visual system, local Inter fonts, centered cinematic hero and responsive component treatments. This stylesheet loads last.
 - `src/grain.mjs`, `dist/grain.css`, `dist/assets/grain.svg`: shared decorative background grain. See `docs/grain-system.md` for reference measurements, placement, tuning and validation.
 - `src/booking-demo.mjs`, `src/booking-call.json`, `dist/booking-demo.js`, `dist/booking-demo.css`: the homepage's synchronized booking call. See `docs/booking-demo.md` for audio provenance, timing, states and verification.
+- `src/comparison.mjs`, `dist/comparison.css`, `dist/comparison.js`: the approved comparison section, responsive cards and finite entrances. See `docs/comparison.md`.
 - `.openai/hosting.json`: existing private Sites identity; preserve it.
 
 Rebuild after changing content or templates. CSS and browser JavaScript remain directly editable in dist, preserving the existing static architecture.

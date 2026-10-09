@@ -1,5 +1,13 @@
 # Voice-first revision — QA notes
 
+## Approved comparison — 9 October 2026
+
+- Added the five-row approved concept after How it works. Desktop table, mobile comparison cards, local Inter fonts and existing demo destination verified at 1440, 1024, 768, 390 and 320px.
+- Heading/row entrances, drawn checkmarks and finite green glow verified. Twenty-three finite animations were observed on desktop; they settled to zero and did not replay on re-entry. Dynamic reduced motion cancelled active animations; OS-reduced, saved-reduced and no-JavaScript fallbacks retained all five rows.
+- No new text clipping or section overflow. Existing unrelated decorative page overflow remains 393px at a 390px viewport and 330px at 320px, as previously documented.
+- Browser runtime errors: none. Homepage markup outside the added section and its CSS/JS references matched baseline; six industry HTML hashes were unchanged. Evidence: `../qa-evidence/comparison/results.json` and `implemented-*.png`.
+- Scope: local browser and source checks; no screen-reader session or live business integration was tested.
+
 Revision date: 7 October 2026.
 
 ## Scope
