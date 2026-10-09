@@ -55,6 +55,8 @@ The motion system has no external dependencies and keeps the underlying HTML vis
 
 The header, footer and browser icon use the user-supplied transparent headset PNG at dist/assets/quiktalk-headset.png, with the existing QuikTalk AI wordmark. The original image is preserved unchanged.
 
+On 9 October 2026, the supplied logo was confirmed to match this asset exactly. The header and footer now show the transparent chrome headset without a pale circular backing or inset padding, at the existing responsive dimensions.
+
 ## Reference redesign — 8 October 2026
 
 The user-supplied Cosmoq HTML/CSS reference supersedes the earlier light/glass presentation. Its centered composition, Inter/Inter Display scale, 1200px content width, thin translucent borders, separate navigation capsule and cinematic horizon are adapted to QuikTalk green. The headset is unchanged and sits on a small light backing for legibility.
