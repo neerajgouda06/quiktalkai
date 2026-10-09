@@ -1,0 +1,114 @@
+{
+  "audioUrl": "./assets/booking-call.wav",
+  "duration": 22.26,
+  "segments": [
+    {
+      "speaker": "customer",
+      "start": 1.2,
+      "end": 3.29,
+      "text": "Hi, I'd like to arrange a visit for Thursday.",
+      "phrases": [
+        {
+          "time": 1.2,
+          "text": "Hi, I'd like to arrange a visit for Thursday."
+        }
+      ]
+    },
+    {
+      "speaker": "assistant",
+      "start": 3.74,
+      "end": 5.62,
+      "text": "Of course. Let me take a few details.",
+      "phrases": [
+        {
+          "time": 3.74,
+          "text": "Of course. Let me take a few details."
+        }
+      ]
+    },
+    {
+      "speaker": "customer",
+      "start": 6.07,
+      "end": 8.57,
+      "text": "It's for a roof inspection at our commercial property.",
+      "phrases": [
+        {
+          "time": 6.07,
+          "text": "It's for a roof inspection at our commercial property."
+        }
+      ]
+    },
+    {
+      "speaker": "assistant",
+      "start": 9.02,
+      "end": 10.86,
+      "text": "Certainly. What time works best for you?",
+      "phrases": [
+        {
+          "time": 9.02,
+          "text": "Certainly."
+        },
+        {
+          "time": 9.64,
+          "text": "What time works best for you?"
+        }
+      ]
+    },
+    {
+      "speaker": "customer",
+      "start": 11.31,
+      "end": 13.0,
+      "text": "Thursday morning would be ideal.",
+      "phrases": [
+        {
+          "time": 11.31,
+          "text": "Thursday morning would be ideal."
+        }
+      ]
+    },
+    {
+      "speaker": "assistant",
+      "start": 13.45,
+      "end": 16.88,
+      "text": "Perfect. I'll pass the details to the team for confirmation.",
+      "phrases": [
+        {
+          "time": 13.45,
+          "text": "Perfect."
+        },
+        {
+          "time": 14.4,
+          "text": "I'll pass the details to the team for confirmation."
+        }
+      ]
+    },
+    {
+      "speaker": "assistant",
+      "start": 18.38,
+      "end": 20.26,
+      "text": "Your booking request has been recorded.",
+      "phrases": [
+        {
+          "time": 18.38,
+          "text": "Your booking request has been recorded."
+        }
+      ]
+    }
+  ],
+  "milestones": {
+    "service": 8.57,
+    "date": 3.29,
+    "time": 13.0,
+    "processing": 16.88,
+    "saved": 20.26,
+    "notified": 21.11,
+    "complete": 21.86
+  },
+  "provenance": {
+    "provider": "Runway",
+    "customerVoice": "James",
+    "assistantVoice": "Paula",
+    "kind": "prerecorded synthetic demo",
+    "timing": "PCM-measured turns and sentence-pause onsets"
+  }
+}

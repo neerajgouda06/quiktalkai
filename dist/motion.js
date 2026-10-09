@@ -404,9 +404,9 @@
       enter(hero.querySelector('.hero-actions'), 340, 8);
       enter(hero.querySelector('.hero-note'), 390, 6);
       enter(document.querySelector('.hero-demo'), 500, 24);
-      enter(document.querySelector('.mini-caller'), 650, 8);
-      enter(document.querySelector('.mini-ai'), 900, 8);
-      enter(document.querySelector('.hero-after'), 1150, 6);
+      enter(document.querySelector('.mini-caller:not(.conversation-card)'), 650, 8);
+      enter(document.querySelector('.mini-ai:not(.conversation-card)'), 900, 8);
+      enter(document.querySelector('.hero-after:not(.booking-workflow)'), 1150, 6);
       document.querySelector('.hero-demo')?.classList.add('has-reflection');
     } else {
       enter(document.querySelector('.industry-hero>div'), 100, 12);
@@ -426,7 +426,7 @@
       if (element.contains(event.target)) { animation.cancel(); animated.delete(animation); }
     }
     disclosures.forEach(controller => { if (controller.content.contains(event.target)) controller.settle(); });
-    if (header && !header.contains(event.target) && event.target !== motionButton) {
+    if (header && !header.contains(event.target)) {
       requestAnimationFrame(() => {
         const box = event.target.getBoundingClientRect();
         const edge = header.getBoundingClientRect().bottom + 12;

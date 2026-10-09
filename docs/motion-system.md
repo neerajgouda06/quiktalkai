@@ -29,4 +29,4 @@ Device reduced-motion settings take precedence over previously saved site prefer
 
 Keyboard focus cancels an entrance affecting the focused control, and future entrances skip its ancestors. Disclosure state settles on resize, hidden-page events and preference changes. Closing content is inert only during its brief transition. Native details remain usable without the enhancement. HTML has no reveal-dependent hidden state, so content stays available if JavaScript, IntersectionObserver or animation support is unavailable.
 
-Motion is decorative: conversations are complete, actions remain user controlled and call audio remains deferred. Do not add artificial call progress, invented performance statistics or autoplay.
+The homepage booking demo was upgraded at the user's request on 9 October 2026. It owns its separate synchronized silent/audio timeline; its transcript and workflow are excluded from the original one-time hero entrance sequence. Audio never autoplays. Industry-page recordings remain deferred. See `booking-demo.md` for the measured call timeline and lifecycle behavior.

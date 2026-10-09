@@ -18,6 +18,7 @@ There are no package dependencies. The browser receives ordinary HTML, shared CS
 - `dist/motion.js`: finite entrances, scroll progress, pointer light, disclosure transitions and the saved Reduce motion preference.
 - `dist/reference.css`: the current dark visual system, local Inter fonts, centered cinematic hero and responsive component treatments. This stylesheet loads last.
 - `src/grain.mjs`, `dist/grain.css`, `dist/assets/grain.svg`: shared decorative background grain. See `docs/grain-system.md` for reference measurements, placement, tuning and validation.
+- `src/booking-demo.mjs`, `src/booking-call.json`, `dist/booking-demo.js`, `dist/booking-demo.css`: the homepage's synchronized booking call. See `docs/booking-demo.md` for audio provenance, timing, states and verification.
 - `.openai/hosting.json`: existing private Sites identity; preserve it.
 
 Rebuild after changing content or templates. CSS and browser JavaScript remain directly editable in dist, preserving the existing static architecture.
@@ -28,7 +29,7 @@ Trades & home services, dental & healthcare, real estate, automotive, hospitalit
 
 All conversations use clearly labelled fictional callers and details. Follow-up records and messages are illustrative. Five examples create requests awaiting staff confirmation; the hospitality example shows a booking completed during the call using connected availability, followed by shared details, a confirmation and a team note.
 
-Audio was explicitly deferred by the user. No play button, waveform, invented duration or simulated recording is displayed. The content model has `audioUrl: null` for each industry. To add an approved demonstration later, supply a supported audio file or HTTPS URL, update the conversation to match it, and rebuild. A native, non-autoplaying audio player will replace the recording notice. Keep the written transcript accessible.
+The homepage booking assistant now includes a prerecorded sample call and a silent preview, requested on 9 October 2026. Audio starts only after Play is pressed. The separate industry content model still has `audioUrl: null` for each industry. To add an industry recording later, supply a supported audio file or HTTPS URL, update its conversation to match it, and rebuild. A native, non-autoplaying audio player will replace that industry's recording notice. Keep the written transcript accessible.
 
 The demos do not execute business workflows or contact anyone.
 
