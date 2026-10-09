@@ -1,0 +1,35 @@
+/* Shared silver finish, loaded after section styles on every page. */
+:root{--icon-silver:#c5cbd3}
+html body .icon,
+html body .feature-art-icon,
+html body .comparison-check svg,
+html body .integration-network-source svg,
+html body .call-play svg{color:var(--icon-silver)!important}
+.security-plane-symbol{stroke:var(--icon-silver)}
+html body .icon-tile,
+html body .industry-card:hover .icon-tile,
+html body .comparison-headset,
+html body .comparison-check,
+html body .feature-art-node{
+  color:var(--icon-silver);
+  border-color:#d5dbe34d;
+  background:linear-gradient(145deg,#c9d0da30,#747e8c1f 48%,#e2e8ef26);
+  box-shadow:inset 0 1px 0 #f3f6fb33,inset 0 -1px 0 #6b748329;
+}
+html body .integration-logo,
+html body .exceptionalities-integration img{filter:brightness(0) invert(.8);opacity:1}
+html body .integration-network-hub img{filter:none}
+.exceptionalities-brain-circuit{color:rgb(197 203 211/.16)}
+.exceptionalities-slider-glow::after{background:linear-gradient(180deg,#8c96a4,#e2e7ef)}
+html body .menu-lines,
+html body .menu-lines::before,
+html body .menu-lines::after{background:var(--icon-silver)}
+@media(forced-colors:active){
+  html body .icon,html body .feature-art-icon,
+  html body .comparison-check svg,html body .integration-network-source svg,
+  html body .call-play svg{color:CanvasText!important}
+  .security-plane-symbol{stroke:CanvasText}
+  html body .icon-tile,html body .industry-card:hover .icon-tile,
+  html body .comparison-headset,html body .comparison-check,
+  html body .feature-art-node{background:Canvas;border-color:CanvasText;box-shadow:none}
+}
