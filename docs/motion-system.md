@@ -25,7 +25,7 @@ The connector uses measured step offsets so its endpoint and dot thresholds matc
 
 ## Accessibility and fallback
 
-Device reduced-motion settings take precedence over the saved site preference. The footer Reduce motion button stores an optional preference in localStorage; blocked storage does not prevent the current-page setting. Reduced mode cancels decorative animations, settles disclosures, completes the process connector and removes hover translation. Fine-pointer hover is separated from touch behavior.
+Device reduced-motion settings take precedence over previously saved site preferences. The hero pause button and footer Reduce motion button were removed at the user's request on 9 October 2026; their styling and event handlers were also removed. Reduced mode cancels decorative animations, settles disclosures, completes the process connector and removes hover translation. Fine-pointer hover is separated from touch behavior.
 
 Keyboard focus cancels an entrance affecting the focused control, and future entrances skip its ancestors. Disclosure state settles on resize, hidden-page events and preference changes. Closing content is inert only during its brief transition. Native details remain usable without the enhancement. HTML has no reveal-dependent hidden state, so content stays available if JavaScript, IntersectionObserver or animation support is unavailable.
 

@@ -5,8 +5,6 @@
   const systemPreference = matchMedia('(prefers-reduced-motion: reduce)');
   const desktopPointer = matchMedia('(min-width: 901px) and (hover: hover) and (pointer: fine)');
   const mobile = matchMedia('(max-width: 640px)');
-  const motionButton = document.querySelector('.motion-toggle');
-  const ambientButton = document.querySelector('.ambient-toggle');
   const ambientVideo = document.querySelector('.atmosphere-video');
   const ambientScene = document.querySelector('.atmosphere');
   const videoViewport = matchMedia('(min-width: 901px)');
@@ -74,13 +72,6 @@
   function syncAtmosphere() {
     if (!ambientVideo) return;
     const canPlay = !reduced && videoViewport.matches && sceneVisible && !document.hidden && !navigator.connection?.saveData;
-    if (ambientButton) {
-      ambientButton.hidden = !videoViewport.matches;
-      ambientButton.disabled = systemPreference.matches;
-      ambientButton.setAttribute('aria-pressed', String(reduced));
-      ambientButton.setAttribute('aria-label', 'Reduce background motion');
-      ambientButton.title = systemPreference.matches ? 'Reduced motion follows your device settings.' : reduced ? 'Enable background motion' : 'Reduce background motion';
-    }
     if (!canPlay) {
       ambientVideo.pause();
       if (videoRequested && (reduced || !videoViewport.matches || navigator.connection?.saveData)) {
@@ -105,12 +96,6 @@
   function updatePreference() {
     reduced = systemPreference.matches || userReduced;
     root.dataset.motion = reduced ? 'reduced' : 'full';
-    if (motionButton) {
-      motionButton.hidden = false;
-      motionButton.setAttribute('aria-pressed', String(reduced));
-      motionButton.disabled = systemPreference.matches;
-      motionButton.title = systemPreference.matches ? 'Reduced motion follows your device settings.' : 'Turn decorative animation off or on.';
-    }
     if (reduced) {
       settleDecorations();
       disclosures.forEach(controller => controller.settle());
@@ -124,13 +109,6 @@
     syncAtmosphere();
     requestUpdate();
   }
-  function toggleMotion() {
-    userReduced = !userReduced;
-    try { localStorage.setItem('quiktalk-reduce-motion', String(userReduced)); } catch { /* Preference remains active for this page. */ }
-    updatePreference();
-  }
-  motionButton?.addEventListener('click', toggleMotion);
-  ambientButton?.addEventListener('click', toggleMotion);
   systemPreference.addEventListener('change', updatePreference);
   updatePreference();
 
