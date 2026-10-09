@@ -11,7 +11,7 @@ export function bookingDemo(icon) {
       <div class="call-wave" aria-hidden="true">${Array.from({length: 15}, (_, i) => `<i style="--bar:${i}"></i>`).join('')}</div>
       <h2>Good conversations.<br>Great follow-through.</h2>
       <div class="call-controls" hidden>
-        <div class="call-control-row"><button class="call-play" type="button" aria-label="Play sample call"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6Z"/></svg><span>Play call</span></button><button class="silent-toggle" type="button">Pause demo</button></div>
+        <div class="call-control-row"><button class="call-play" type="button" aria-label="Play sample call"><svg class="chrome-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6Z"/></svg><span>Play call</span></button><button class="silent-toggle" type="button">Pause demo</button></div>
         <div class="call-meter"><progress class="call-progress" value="0" max="${call.duration}" aria-label="Sample call progress"></progress><span class="call-time">0:00 / 0:23</span></div>
         <div class="call-state"><span class="call-status" role="status" aria-live="polite">Ready</span><span class="call-mode">Silent preview</span></div>
         <p class="call-note">Illustrative call · Generated voices</p><p class="call-error" role="alert" hidden></p>

@@ -28,7 +28,7 @@ export function comparison(icon, button, book) {
           <tbody role="rowgroup">${rows.map(([label, symbol, typical, ai]) => `<tr class="comparison-row" role="row">
             <th scope="row" role="rowheader"><div class="comparison-cell">${label}</div></th>
             <td role="cell"><div class="comparison-cell"><span class="comparison-mobile-label" aria-hidden="true">Typical call handling</span><div class="comparison-value">${icon(symbol)}<span>${typical}</span></div></div></td>
-            <td role="cell" class="comparison-ai"><div class="comparison-cell"><span class="comparison-mobile-label" aria-hidden="true">QuikTalk AI</span><div class="comparison-value"><span class="comparison-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6" pathLength="1"/></svg></span><span>${ai}</span></div></div></td>
+            <td role="cell" class="comparison-ai"><div class="comparison-cell"><span class="comparison-mobile-label" aria-hidden="true">QuikTalk AI</span><div class="comparison-value"><span class="comparison-check"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6" pathLength="1"/></svg></span><span>${ai}</span></div></div></td>
           </tr>`).join('')}</tbody>
         </table>
       </div>

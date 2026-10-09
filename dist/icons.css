@@ -1,11 +1,23 @@
-/* Shared silver finish, loaded after section styles on every page. */
+/* Reflective chrome finish, loaded after section styles on every page. */
 :root{--icon-silver:#c5cbd3}
 html body .icon,
 html body .feature-art-icon,
 html body .comparison-check svg,
 html body .integration-network-source svg,
 html body .call-play svg{color:var(--icon-silver)!important}
-.security-plane-symbol{stroke:var(--icon-silver)}
+.security-plane-symbol{stroke:url(#security-chrome)}
+.chrome-glyph{filter:drop-shadow(0 1px 0 #020405a6) drop-shadow(0 -0.5px 0 #e3ebf338)}
+.chrome-mask{
+  display:block;
+  background:linear-gradient(135deg,#727e8e 0%,#c6cfda 23%,#f2f5fa 38%,#687687 45%,#8b99aa 56%,#e3e9f1 73%,#7e8b9c 100%);
+  background-size:180% 180%;
+  background-position:var(--chrome-position,50%) 50%;
+  mask:var(--chrome-mask) center/contain no-repeat;
+  -webkit-mask:var(--chrome-mask) center/contain no-repeat;
+}
+.exceptionalities-integration>.chrome-mask{width:34px;height:34px;flex:none}
+html body .integration-logo.chrome-mask{filter:none;opacity:1}
+[data-chrome-active] .chrome-glyph{filter:drop-shadow(0 1px 0 #020405a6) drop-shadow(0 0 2px #bfd1e347)}
 html body .icon-tile,
 html body .industry-card:hover .icon-tile,
 html body .comparison-headset,
@@ -13,18 +25,21 @@ html body .comparison-check,
 html body .feature-art-node{
   color:var(--icon-silver);
   border-color:#d5dbe34d;
-  background:linear-gradient(145deg,#c9d0da30,#747e8c1f 48%,#e2e8ef26);
+  background:linear-gradient(145deg,#c9d0da30,#4a56692e 42%,#e2e8ef38 49%,#747e8c1f 58%,#a8b5c72e);
   box-shadow:inset 0 1px 0 #f3f6fb33,inset 0 -1px 0 #6b748329;
 }
 html body .integration-logo,
 html body .exceptionalities-integration img{filter:brightness(0) invert(.8);opacity:1}
 html body .integration-network-hub img{filter:none}
-.exceptionalities-brain-circuit{color:rgb(197 203 211/.16)}
+.exceptionalities-brain-circuit{opacity:.22}
 .exceptionalities-slider-glow::after{background:linear-gradient(180deg,#8c96a4,#e2e7ef)}
 html body .menu-lines,
 html body .menu-lines::before,
-html body .menu-lines::after{background:var(--icon-silver)}
+html body .menu-lines::after{background:linear-gradient(135deg,#7c899b,#e3e9f2 38%,#738194 48%,#c3cedc 78%,#8190a3)}
 @media(forced-colors:active){
+  html body .chrome-glyph{stroke:CanvasText!important;filter:none}
+  html body .call-play .chrome-glyph{fill:CanvasText!important;stroke:none!important}
+  html body .chrome-mask{background:CanvasText;filter:none}
   html body .icon,html body .feature-art-icon,
   html body .comparison-check svg,html body .integration-network-source svg,
   html body .call-play svg{color:CanvasText!important}

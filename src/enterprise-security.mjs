@@ -8,6 +8,7 @@ const securityDiagram = `<svg class="security-diagram" viewBox="0 0 560 500" fil
   <title id="security-diagram-title">Four layers of control around your AI employee</title>
   <desc id="security-diagram-desc">Approved information, agreed actions, human handoff and review before launch form four connected layers.</desc>
   <defs>
+    <linearGradient id="security-chrome" x1="0" y1="0" x2=".35" y2="1"><stop stop-color="#7a8798"/><stop offset=".38" stop-color="#edf2fa"/><stop offset=".48" stop-color="#6a788b"/><stop offset=".75" stop-color="#d3deeb"/><stop offset="1" stop-color="#8190a3"/></linearGradient>
     <linearGradient id="security-glass" x1="0" y1="160" x2="270" y2="270" gradientUnits="userSpaceOnUse"><stop stop-color="#d9e8ab" stop-opacity=".28"/><stop offset=".46" stop-color="#7ab67c" stop-opacity=".4"/><stop offset="1" stop-color="#619b8a" stop-opacity=".16"/></linearGradient>
     <radialGradient id="security-light" cx="0" cy="0" r="1" gradientTransform="translate(84 265) rotate(-28) scale(240 185)" gradientUnits="userSpaceOnUse"><stop stop-color="#d7e6a5" stop-opacity=".86"/><stop offset=".44" stop-color="#7fb873" stop-opacity=".56"/><stop offset="1" stop-color="#3a7165" stop-opacity="0"/></radialGradient>
     <linearGradient id="security-edge" x1="30" y1="60" x2="230" y2="420" gradientUnits="userSpaceOnUse"><stop stop-color="#e1f0bf" stop-opacity=".5"/><stop offset=".5" stop-color="#9bc9a1" stop-opacity=".12"/><stop offset="1" stop-color="#91bca1" stop-opacity="0"/></linearGradient>

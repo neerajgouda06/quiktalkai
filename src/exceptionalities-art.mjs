@@ -27,7 +27,7 @@ const sliders = [[.5, '50%', 1, '3.5px'], [.75, '23%', .17, '82%'], [.17, '81%',
 ).join('');
 
 function tickerRow(first, row) {
-  const group = Array.from({ length: 4 }, (_, index) => `<span class="exceptionalities-integration"><img src="/assets/exceptionalities-icon-${first + index}.svg" width="34" height="34" alt="" decoding="async"></span>`).join('');
+  const group = Array.from({ length: 4 }, (_, index) => `<span class="exceptionalities-integration"><span class="chrome-mask" style="--chrome-mask:url('/assets/exceptionalities-icon-${first + index}.svg')"></span></span>`).join('');
   return `<div class="exceptionalities-ticker exceptionalities-ticker--${row}"><div class="exceptionalities-ticker-track">${Array.from({ length: 4 }, () => `<span class="exceptionalities-ticker-group">${group}</span>`).join('')}</div></div>`;
 }
 
