@@ -1,0 +1,13 @@
+# Hero arc refinement — 9 October 2026
+
+The reference horizon is part of COSMOQ's 1760 × 1152, 10.43-second atmospheric video, already supplied and self-hosted in this project. It is not the foreground dashboard PNG or an independently rotating ring. Live desktop, mobile, and scrolled captures were compared with the supplied screenshot and local reference source. The screenshot uses a larger apparent browser scale; native 1440px captures establish the intended composition.
+
+The previous CSS ellipse produced a flatter contour and a second horizon over the video. The refined hero uses the original video surface for the rim, curved body, reflections, light columns, and bloom. A 45,152-byte WebP still extracted at 1.2 seconds provides the same surface on mobile, reduced-motion, data-saving, JavaScript-disabled, and loading-failure paths. No new rendering dependency is needed.
+
+`scripts/build.mjs` places the still and existing video in one decorative `.atmosphere-scene`. Shared sizing, centered `object-fit: cover`, and a shared CSS grade prevent differently shaped or differently colored horizons during the video fade. Desktop scene height is 857px; at 809px and below it is 680px, matching the reference's mobile video layer rather than shrinking the desktop scene. The scene starts at document y=0 in the checked desktop and mobile layouts. The bottom mask removes the image boundary smoothly.
+
+The CSS grade converts the source's blue/orange light to QuikTalk's green, with pale highlights and dark green shadows. Existing brand tokens, foreground layout, frost, grain, and all business copy are preserved. The original video file and playback controls are unchanged. The media crossfade remains 1.4 seconds. The horizon is anchored to the hero; the video loop changes its illumination without additional scroll translation.
+
+Validation evidence is outside the deployed project in `../qa-evidence/arc-refinement-report.json` and the `arc-refined-*.png` / `arc-reference-current-*.png` captures. Headless Edge checked 1440, 1918, 768, 390, and 320px widths, compared foreground geometry and homepage content with the saved baseline, verified video playback and motion controls, and rendered the no-JavaScript path. All six industry HTML pages are byte-for-byte unchanged. Runtime errors were empty.
+
+The arc adds no horizontal overflow. Existing full-page widths remain 393px at a 390px viewport and 330px at 320px, identical to the baseline; this narrow-screen issue is outside the arc. Safari and real-device frame rates were not measured. The implementation uses native image/video, object-fit, CSS filters, and both standard and WebKit-prefixed scene masks.
