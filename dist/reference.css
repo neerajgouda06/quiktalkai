@@ -78,7 +78,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible,audio:focus-visible{o
 .atmosphere-frost{position:absolute;inset:0;background:linear-gradient(#03050448 8%,#0305046b 30%,transparent 80%)}
 
 
-.hero-demo{width:min(1080px,100%);min-height:350px;padding:28px 32px;display:grid;grid-template-columns:.9fr 1.15fr .8fr;grid-template-rows:auto 1fr auto;column-gap:36px;border-radius:24px;background:linear-gradient(120deg,#111c15e8,#090f0cf5 55%,#0c1511f0);box-shadow:0 -1px 0 #ddf7cc2b,0 24px 70px #0008;backdrop-filter:blur(18px);isolation:isolate}
+.hero.container,.value-strip{--hero-demo-width:1080px}
+.hero-demo{width:min(var(--hero-demo-width),100%);min-height:350px;padding:28px 32px;display:grid;grid-template-columns:.9fr 1.15fr .8fr;grid-template-rows:auto 1fr auto;column-gap:36px;border-radius:24px;background:linear-gradient(120deg,#111c15e8,#090f0cf5 55%,#0c1511f0);box-shadow:0 -1px 0 #ddf7cc2b,0 24px 70px #0008;backdrop-filter:blur(18px);isolation:isolate}
 .demo-label{grid-column:1/-1;padding-bottom:24px;border-bottom:1px solid var(--line);font-size:11px;font-weight:500;letter-spacing:.08em;color:#b2c2b5}
 .example-badge{font-size:11px;line-height:1.5;color:#b6c9b9;border-color:#ffffff21;background:#ffffff05;padding:4px 10px}
 .hero-demo .voice-emblem{grid-column:1;grid-row:2;width:66px;height:66px;margin:28px auto 0}
@@ -98,6 +99,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,audio:focus-visible{o
 .hero-demo-link{grid-column:3;grid-row:3;align-self:end;justify-content:flex-start;font-size:12px;font-weight:500;color:#a8d899;margin:0 0 20px}
 .value-strip{display:flex;padding:38px 0 42px;border-top:0;border-bottom:1px solid #ffffff12;gap:24px}
 .value-strip>span{color:#aab7ae;font-size:13px}.value-strip .icon{color:#8eba7e}
+@media(min-width:561px){.value-strip>span:first-child{margin-inline-start:max(0px,calc((100% - var(--hero-demo-width))/2))}.value-strip>span:last-child{margin-inline-end:max(0px,calc((100% - var(--hero-demo-width))/2))}}
 .surface-light::after{background:radial-gradient(circle,#b6e59c19,#9bc78408 38%,transparent 68%)}
 .motion-reflection::after{background:linear-gradient(110deg,transparent 15%,#b7e69416 49%,transparent 84%)}
 @media(max-width:1199px){h1,.hero-copy h1{font-size:58px}h2{font-size:45px}.site-header,.js .site-header{padding-inline:30px}.hero-demo{column-gap:24px;padding:28px}.nav-links{gap:24px;padding-inline:22px}.hero-demo h2{font-size:23px}.mini-conversation{padding-inline:16px}}
