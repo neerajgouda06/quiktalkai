@@ -1,0 +1,11 @@
+# Cloudflare Pages / Workers Configuration for QuikTalk AI
+name = "quiktalkai"
+compatibility_date = "2024-10-01"
+pages_build_output_dir = "dist"
+
+[site]
+bucket = "./dist"
+
+[vars]
+SITE_URL = "https://www.quiktalkai.com"
+BOOKING_URL = "https://www.quiktalkai.com/#demo"

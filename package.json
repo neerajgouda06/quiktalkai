@@ -7,14 +7,23 @@
     "build": "node scripts/build.mjs",
     "preview": "node scripts/preview.mjs",
     "dev": "node scripts/preview.mjs",
-    "start": "node scripts/preview.mjs"
+    "start": "node scripts/preview.mjs",
+    "test": "node scripts/test-audit.mjs",
+    "validate": "node scripts/build.mjs && node scripts/test-audit.mjs",
+    "deploy": "wrangler pages deploy dist --project-name=quiktalkai"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "keywords": [
     "quiktalk",
     "ai",
     "voice-agents"
   ],
-  "author": "",
+  "author": "QuikTalk AI",
   "license": "UNLICENSED",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "wrangler": "^4.151.0"
+  }
 }

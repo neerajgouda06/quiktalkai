@@ -1,5 +1,5 @@
 {
-  "audioUrl": "./assets/booking-call.wav",
+  "audioUrl": "/assets/booking-call.wav",
   "duration": 22.26,
   "segments": [
     {

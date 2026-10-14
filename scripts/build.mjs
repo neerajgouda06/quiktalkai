@@ -15,9 +15,11 @@ import { aiInfrastructurePath, aiInfrastructureTitle, aiInfrastructureDescriptio
 import { aiWorkflows } from '../src/ai-workflows.mjs';
 import { webDevelopment } from '../src/web-development.mjs';
 import { serviceDetailHead, serviceDetailBody } from '../src/service-detail.mjs';
+import { privacyPolicyBody, termsBody } from '../src/legal.mjs';
+
 const root = fileURLToPath(new URL('../dist/', import.meta.url));
-const origin = 'https://quiktalk-ai-workforce.randhawa787.chatgpt.site';
-const book = 'https://www.quiktalkai.com/#demo';
+const origin = (process.env.SITE_URL || process.env.CF_PAGES_URL || 'https://www.quiktalkai.com').replace(/\/+$/, '');
+const book = process.env.BOOKING_URL || 'https://www.quiktalkai.com/#demo';
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const icons = {
  arrow:'<path d="M5 12h14m-6-6 6 6-6 6"/>', phone:'<path d="M7 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-3l-5-2-2 2a15 15 0 0 1-7-7l2-2-2-5Z"/>',
@@ -40,7 +42,7 @@ const button = (label, href, secondary=false) => `<a class="button ${secondary?'
 function shell(title, description, path, body, closingHeading, head = '', contactOptions = {}) {
  return chromeIcons(`<!doctype html><html lang="en-NZ"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#030504"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><link rel="canonical" href="${origin}${path}"><meta property="og:type" content="website"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${origin}${path}"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(description)}"><link rel="icon" href="/assets/quiktalk-headset.png" type="image/png"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/motion.css"><link rel="stylesheet" href="/reference.css"><link rel="stylesheet" href="/grain.css"><link rel="stylesheet" href="/footer.css">${path === "/" ? '<link rel="stylesheet" href="/services.css">' : ""}<link rel="preload" href="/assets/fonts/inter-display-medium.woff2" as="font" type="font/woff2" crossorigin><script src="/app.js" defer></script><script src="/motion.js" defer></script>${path === '/' ? '<link rel="stylesheet" href="/comparison.css"><script src="/comparison.js" defer></script><link rel="stylesheet" href="/booking-demo.css"><script src="/booking-demo.js" defer></script><link rel="stylesheet" href="/features.css"><script src="/features.js" defer></script><link rel="stylesheet" href="/security.css"><script src="/security.js" defer></script>' : ''}${head}<link rel="stylesheet" href="/icons.css"><script src="/chrome-icons.js" defer></script></head><body><a class="skip-link" href="#main">Skip to content</a>
  <header class="site-header glass"><a class="brand" href="/" aria-label="QuikTalk AI home">${brand}</a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav"><span>Menu</span><span class="menu-lines" aria-hidden="true"></span></button><nav id="primary-nav" aria-label="Main navigation"><div class="nav-links"><a href="/#services">Services</a><a href="/#industries">Industry demos</a><a href="/#how-it-works">How it works</a><a href="/services/ai-employees/"${path === aiEmployeesPath ? ' aria-current="page"' : ''}>AI employees</a></div><a class="nav-cta" href="${book}">Let’s talk ${arrow}</a></nav></header><main id="main" tabindex="-1">${body}</main>
- <footer class="footer grain-surface cinematic-footer">${grain}${contact(closingHeading, contactOptions)}${footerArt}<div class="container footer-top"><div class="footer-brand"><a class="brand" href="/" aria-label="QuikTalk AI home">${brand}</a><p>A helpful voice.<br>A useful next step.</p><span class="small">Auckland, New Zealand · Serving NZ &amp; Australia</span></div><div><h2>Explore the demos</h2><div class="footer-industries">${industries.map(i=>`<a href="/industries/${i.slug}/">${esc(i.name)}</a>`).join('')}</div></div><div><h2>Let’s talk</h2><a href="${book}">Book a demo ${arrow}</a><a href="mailto:admin@quiktalkai.com">admin@quiktalkai.com</a></div></div><div class="container footer-bottom"><span>© ${new Date().getFullYear()} QuikTalk AI</span><div><a href="https://www.quiktalkai.com/privacy-policy">Privacy</a><a href="https://www.quiktalkai.com/terms-of-service">Terms</a></div></div></footer></body></html>`);
+ <footer class="footer grain-surface cinematic-footer">${grain}${contact(closingHeading, contactOptions)}${footerArt}<div class="container footer-top"><div class="footer-brand"><a class="brand" href="/" aria-label="QuikTalk AI home">${brand}</a><p>A helpful voice.<br>A useful next step.</p><span class="small">Auckland, New Zealand · Serving NZ &amp; Australia</span></div><div><h2>Explore the demos</h2><div class="footer-industries">${industries.map(i=>`<a href="/industries/${i.slug}/">${esc(i.name)}</a>`).join('')}</div></div><div><h2>Let’s talk</h2><a href="${book}">Book a demo ${arrow}</a><a href="mailto:admin@quiktalkai.com">admin@quiktalkai.com</a></div></div><div class="container footer-bottom"><span>© ${new Date().getFullYear()} QuikTalk AI</span><div><a href="/privacy-policy/">Privacy</a><a href="/terms-of-service/">Terms</a></div></div></footer></body></html>`);
 }
 const cards = (items=industries) => items.map(i=>`<a class="industry-card" href="/industries/${i.slug}/"><div class="card-top"><span class="icon-tile">${icon(i.icon)}</span><span class="card-number" aria-hidden="true">0${industries.indexOf(i)+1}</span></div><span class="role-label">${esc(i.role)}</span><h3>${esc(i.name)}</h3><p>${esc(i.card)}</p><span class="card-link">Explore the demo ${arrow}</span></a>`).join('');
 const contact = (heading='Let’s give your business<br>a helpful new voice.', {description='Tell us what happens on your calls.<br>We’ll show you where an AI employee can help.', buttonLabel='Book a demo'} = {}) => `<section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="container contact-panel glass"><div><span class="eyebrow">YOUR BUSINESS. YOUR WAY OF WORKING.</span><h2 id="contact-title">${heading}</h2><p>${description}</p></div><div class="contact-actions">${button(buttonLabel,book)}<a class="email-link" href="mailto:admin@quiktalkai.com">Or email the team ${arrow}</a><span class="small">Built around your business in New Zealand.</span></div></div></section>`;
@@ -87,8 +89,39 @@ function industryPage(item) {
  <p class="demo-disclaimer">This is an illustrative conversation and workflow, not a live call or a customer result. The actions available depend on your connected tools, information and agreed rules. We test the full process with you before launch.</p>
  <section class="more-demos"><div class="section-heading"><h2>Explore another industry.</h2><a class="text-link" href="/#industries">View all demos ${arrow}</a></div><div class="industry-grid">${cards(related)}</div></section></div>`, 'Picture this working<br>for your business.');
 }
+
+function notFoundPage() {
+ const head = '<meta name="robots" content="noindex, follow">';
+ const body = `
+ <div class="container" style="min-height: 55vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 6rem 1.5rem 4rem;">
+  <span class="eyebrow">${icon('shield')} 404 · PAGE NOT FOUND</span>
+  <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); margin: 1rem 0 1.25rem; line-height: 1.1;">We couldn’t find that page.</h1>
+  <p style="max-width: 540px; margin: 0 auto 2.5rem; color: var(--color-muted, #94a3b8); font-size: 1.15rem; line-height: 1.6;">
+   The page you requested may have moved, been renamed, or is temporarily unavailable. Let’s get you back on track.
+  </p>
+  <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+   ${button('Return home', '/')}
+   ${button('Explore industry demos', '/#industries', true)}
+   ${button('Book a demo', book, true)}
+  </div>
+ </div>`;
+ return shell('Page Not Found — QuikTalk AI', 'The page you requested could not be found. Explore our AI voice agents, service offerings, and industry demonstrations.', '/404.html', body, 'Let’s give your business<br>a helpful new voice.', head);
+}
+
+function privacyPolicyPage() {
+ const head = '<meta property="og:image" content="' + origin + '/assets/quiktalk-headset.png">';
+ return shell('Privacy Policy — QuikTalk AI', 'Privacy Policy for QuikTalk AI voice receptionists and customer workflow solutions, adhering to NZ Privacy Act 2020 and Australian Privacy Principles.', '/privacy-policy/', privacyPolicyBody({ icon }), 'Let’s give your business<br>a helpful new voice.', head);
+}
+
+function termsPage() {
+ const head = '<meta property="og:image" content="' + origin + '/assets/quiktalk-headset.png">';
+ return shell('Terms of Service — QuikTalk AI', 'Terms of Service governing use of the QuikTalk AI website, demonstrations, and AI employee solutions in New Zealand and Australia.', '/terms-of-service/', termsBody({ icon }), 'Let’s give your business<br>a helpful new voice.', head);
+}
+
 await mkdir(root, {recursive:true});
 await writeFile(root + '/index.html', homepage());
+await writeFile(root + '/404.html', notFoundPage());
+
 for (const page of [aiWorkflows, webDevelopment]) {
  await mkdir(root + page.path, {recursive:true});
  await writeFile(root + page.path + 'index.html', shell(page.title, page.description, page.path, serviceDetailBody(page, {icon, button, book, grain}), page.closingHeading, serviceDetailHead(page, origin), page.contactOptions));
@@ -97,10 +130,29 @@ await mkdir(root + aiInfrastructurePath, {recursive:true});
 await writeFile(root + aiInfrastructurePath + 'index.html', shell(aiInfrastructureTitle, aiInfrastructureDescription, aiInfrastructurePath, aiInfrastructureBody({icon, button, book, grain}), 'Let’s connect the tools<br>behind your business.', aiInfrastructureHead(origin)));
 await mkdir(root + aiEmployeesPath, {recursive:true});
 await writeFile(root + aiEmployeesPath + 'index.html', shell(aiEmployeesTitle, aiEmployeesDescription, aiEmployeesPath, aiEmployeesBody({icon, button, book, grain, industries}), 'Let’s find the right role<br>for your business.', aiEmployeesHead(origin))); 
+
 for (const item of industries) {
  await mkdir(`${root}/industries/${item.slug}`, {recursive:true});
  await writeFile(`${root}/industries/${item.slug}/index.html`, industryPage(item));
 }
-await writeFile(root + '/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['/',aiEmployeesPath,aiInfrastructurePath,aiWorkflows.path,webDevelopment.path,...industries.map(item=>`/industries/${item.slug}/`)].map(path=>`<url><loc>${origin}${path}</loc></url>`).join('')}</urlset>`);
-await writeFile(root + '/robots.txt', `User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
-console.log(`Built the home page, four service pages and ${industries.length} industry demo pages.`);
+
+await mkdir(root + '/privacy-policy', {recursive:true});
+await writeFile(root + '/privacy-policy/index.html', privacyPolicyPage());
+
+await mkdir(root + '/terms-of-service', {recursive:true});
+await writeFile(root + '/terms-of-service/index.html', termsPage());
+
+const allPublicRoutes = [
+ '/',
+ aiEmployeesPath,
+ aiInfrastructurePath,
+ aiWorkflows.path,
+ webDevelopment.path,
+ '/privacy-policy/',
+ '/terms-of-service/',
+ ...industries.map(item => `/industries/${item.slug}/`)
+];
+
+await writeFile(root + '/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${allPublicRoutes.map(path=>`<url><loc>${origin}${path}</loc></url>`).join('')}</urlset>`);
+await writeFile(root + '/robots.txt', `User-agent: *\nAllow: /\nDisallow: /404.html\nSitemap: ${origin}/sitemap.xml\n`);
+console.log(`Built the home page, 404 page, four service pages, two legal pages, and ${industries.length} industry demo pages with origin "${origin}".`);

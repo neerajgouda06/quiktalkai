@@ -1,78 +1,68 @@
-# QuikTalk AI — Voice agents and AI employees
+# QuikTalk AI — Voice Agents and AI Employees
 
-A dependency-free, static marketing site with a voice-first home page, four dedicated service pages and six industry demo pages.
+A dependency-free, high-performance static marketing and customer experience platform with a voice-first home page, four dedicated service pages, six interactive industry demo pages, custom 404 error handling, and privacy/terms compliance.
 
-## Build and preview
+Designed for edge hosting on **Cloudflare Pages** and serving **https://www.quiktalkai.com**.
 
-You can run the build and preview either with npm scripts:
+---
+
+## Production Scripts
+
 ```bash
-npm run build    # Generates the eleven HTML pages, sitemap and robots file
-npm run preview  # Serves the site at http://127.0.0.1:4173/ (or npm start / npm run dev)
+npm run build      # Generates all HTML pages, 404, sitemap.xml, robots.txt, and legal pages
+npm test           # Runs 900+ automated production audits (links, assets, SEO, headers, JSON-LD)
+npm run validate   # Builds and executes the complete test audit suite
+npm run preview    # Serves the local site at http://127.0.0.1:4173/ (or npm start / npm run dev)
+npm run deploy     # Deploys directly to Cloudflare Pages via Wrangler CLI
 ```
-Or directly with Node:
-Run `node scripts/build.mjs` to generate the eleven HTML pages, sitemap and robots file. Then run `node scripts/preview.mjs` and open http://127.0.0.1:4173/. The preview serves the existing `dist/` files. Keep the process running while viewing the site; press Ctrl+C to stop it. To use another port in PowerShell, set `$env:PORT = 4174` before starting the preview and open http://127.0.0.1:4174/ instead.
 
-There are no package dependencies. The browser receives ordinary HTML, shared CSS and a small progressive-enhancement script.
+---
 
-## Editing
+## Architecture & Codebase Organization
 
-- `src/ai-workflows.mjs`, `src/web-development.mjs`, `src/service-detail.mjs`, `dist/service-details.css`: the Workflows and Web Development pages. The existing after-call example lives in `src/workflow-example.mjs`. See `docs/remaining-service-pages.md`.
-- `src/ai-infrastructure.mjs`, `dist/ai-infrastructure.css`: the dedicated Infrastructure page, moved ecosystem diagram, visitor explanations and search metadata. See `docs/ai-infrastructure.md`.
-- `src/ai-employees.mjs`, `dist/ai-employees.css`: the dedicated AI Employees page, moved role content, visitor information, FAQs and structured data. See `docs/ai-employees.md`.
-- `src/services.mjs`, `dist/services.css`, `dist/assets/services-*.webp`: the approved Services section, original QuikTalk logo, four linked cards and static background grain. See `docs/services.md`.
-- `src/content.mjs`: six illustrative industry scenarios, AI employee roles, conversations, follow-up actions and human-handoff guidance.
-- `scripts/build.mjs`: shared header/footer, home-page sections, industry-page template and page-specific metadata.
-- `dist/styles.css`: design tokens, reflective glass material, layout, responsive rules and accessibility fallbacks.
-- `dist/app.js`: mobile-menu behavior and future audio error handling.
-- `dist/motion.css`: shared timings, subtle glass effects, process connector and reduced-motion styles.
-- `dist/motion.js`: finite entrances, scroll progress, pointer light, disclosure transitions and the saved Reduce motion preference.
-- `dist/reference.css`: the current dark visual system, local Inter fonts, centered cinematic hero and responsive component treatments. This stylesheet loads last.
-- `src/grain.mjs`, `dist/grain.css`, `dist/assets/grain.svg`: shared decorative background grain. See `docs/grain-system.md` for reference measurements, placement, tuning and validation.
-- `src/booking-demo.mjs`, `src/booking-call.json`, `dist/booking-demo.js`, `dist/booking-demo.css`: the homepage's synchronized booking call. See `docs/booking-demo.md` for audio provenance, timing, states and verification.
-- `src/comparison.mjs`, `dist/comparison.css`, `dist/comparison.js`: the approved comparison section, responsive cards and finite entrances. See `docs/comparison.md`.
-- `.openai/hosting.json`: existing private Sites identity; preserve it.
+* `src/`: Modular template generators and content specifications.
+  * `content.mjs`: Six illustrative industry scenarios, AI employee roles, dialogue transcripts, and after-call actions.
+  * `booking-demo.mjs`, `booking-call.json`: Synchronized homepage booking demo component and audio timeline.
+  * `ai-employees.mjs`: AI Employees service page definition, role architecture, and Schema.org metadata.
+  * `ai-infrastructure.mjs`: AI Infrastructure service page, ecosystem architecture, and technical explanations.
+  * `ai-workflows.mjs`, `web-development.mjs`: Workflow automation and web development service pages.
+  * `legal.mjs`: Privacy Policy (NZ Privacy Act 2020 / APP compliant) and Terms of Service.
+  * `services.mjs`, `comparison.mjs`, `enterprise-features.mjs`, `enterprise-security.mjs`: Homepage modular sections.
+* `dist/`: Production build output and static assets.
+  * `_headers`: Strict edge security headers (CSP, HSTS, X-Frame-Options, nosniff) and immutable asset caching.
+  * `_redirects`: URL normalization rules and clean route handling for Cloudflare Pages.
+  * `assets/`: WebP imagery, SVG icons, self-hosted WOFF2 Inter fonts, audio demo WAV, and MP4 atmosphere video.
+  * `styles.css`, `reference.css`, `motion.css`: Visual styling, glass surfaces, layout tokens, and responsive design.
+  * `motion.js`, `app.js`, `booking-demo.js`: Progressive enhancement scripts with zero runtime dependencies.
+* `scripts/`:
+  * `build.mjs`: Production HTML generator and sitemap/robots compiler with configurable environment origin.
+  * `test-audit.mjs`: 900+ automated production assertions checking all assets, routes, schemas, and security rules.
+  * `preview.mjs`: Lightweight, dependency-free local HTTP server with range request support.
+* `.github/workflows/deploy.yml`: Automated CI/CD pipeline verifying builds, running tests, and deploying to Cloudflare Pages.
+* `wrangler.toml`: Cloudflare Pages project configuration.
+* `docs/deployment-and-domain-guide.md`: Comprehensive Cloudflare Pages setup and custom domain DNS guide.
 
-Rebuild after changing content or templates. CSS and browser JavaScript remain directly editable in dist, preserving the existing static architecture.
+---
 
-## Industry demonstrations
+## Environment Variables
 
-Trades & home services, dental & healthcare, real estate, automotive, hospitality and professional services each have an independent URL under `/industries/`.
+Copy `.env.example` to `.env` to customize local builds:
 
-All conversations use clearly labelled fictional callers and details. Follow-up records and messages are illustrative. Five examples create requests awaiting staff confirmation; the hospitality example shows a booking completed during the call using connected availability, followed by shared details, a confirmation and a team note.
+| Variable | Default Value | Description |
+| :--- | :--- | :--- |
+| `SITE_URL` | `https://www.quiktalkai.com` | Base canonical origin for sitemaps, OpenGraph, JSON-LD |
+| `BOOKING_URL` | `https://www.quiktalkai.com/#demo` | Primary consultation / booking call to action destination |
+| `PORT` | `4173` | Local HTTP preview port |
 
-The homepage booking assistant now includes a prerecorded sample call and a silent preview, requested on 9 October 2026. Audio starts only after Play is pressed. The separate industry content model still has `audioUrl: null` for each industry. To add an industry recording later, supply a supported audio file or HTTPS URL, update its conversation to match it, and rebuild. A native, non-autoplaying audio player will replace that industry's recording notice. Keep the written transcript accessible.
+---
 
-The demos do not execute business workflows or contact anyone.
+## Cloudflare Deployment & Custom Domain
 
-## Design and business sources
+For full deployment instructions, build settings, and DNS record preservation (including Hostinger MX business email preservation), consult:
+👉 **[docs/deployment-and-domain-guide.md](docs/deployment-and-domain-guide.md)**
 
-The supplied Figma Home Desktop frame (28-127) and glass images informed the light canvas, green palette, bold type, split hero, silver-rimmed navigation and dimensional panels. Glass is used selectively. The reference checkerboard is not embedded.
-
-The user's latest direction makes voice agents the primary service, AI employees the role-based explanation, and agentic workflows the plain-language after-call story. This supersedes the original attachment's opposite positioning.
-
-The existing QuikTalk website supplied the Auckland/NZ/AU context, industry use cases, integration examples and contact destinations. No testimonials, client logos, measured results or performance guarantees have been invented. Tool compatibility and actions depend on the client's agreed setup.
-
-Conversion links open the existing enquiry page at https://www.quiktalkai.com/#demo or email admin@quiktalkai.com. No lead endpoint, CRM or new external submission is configured here.
-
-## Validation and hosting
-
-See `docs/qa.md` for checked scope and limitations. The existing owner-private Site is retained; this does not replace the company website or change its public domain.
-
-The motion system has no external dependencies and keeps the underlying HTML visible. Read `docs/motion-system.md` before changing animation behavior.
-
-
-## Brand asset
-
-The header, footer and browser icon use the user-supplied transparent headset PNG at dist/assets/quiktalk-headset.png, with the existing QuikTalk AI wordmark. The original image is preserved unchanged.
-
-On 9 October 2026, the supplied logo was confirmed to match this asset exactly. The header and footer now show the transparent chrome headset without a pale circular backing or inset padding, at the existing responsive dimensions.
-
-## Reference redesign — 8 October 2026
-
-The user-supplied Cosmoq HTML/CSS reference supersedes the earlier light/glass presentation. Its centered composition, Inter/Inter Display scale, 1200px content width, thin translucent borders, separate navigation capsule and cinematic horizon are adapted to QuikTalk green. The headset is unchanged and sits on a small light backing for legibility.
-
-All existing text, CTA labels/destinations and metadata (except the theme color) were compared against the preceding revision on all seven pages. `src/content.mjs` is unchanged. No pricing, testimonials, product claims or sections from Cosmoq were added.
-
-Fonts are self-hosted under `dist/assets/fonts` (approximately 137KB total). The supplied reference's 4.73MB atmospheric video is self-hosted at `dist/assets/atmosphere.mp4` and colored green through CSS. The exported 72.7MB HTML, remote Framer runtime and embedded dashboard imagery are not included. `docs/reference-design.md` records measurements, adaptations and asset provenance.
-
-Video starts only on visible desktop layouts with motion enabled and data saver off. It pauses offscreen/when hidden and detaches its source for reduced motion, data saver or smaller layouts. A CSS horizon remains without video or JavaScript. The hero pause button and footer Reduce motion control were removed at the user's request on 9 October 2026. Device reduced-motion settings and previously saved preferences remain respected.
+### Quick Summary for Cloudflare Pages:
+1. **Build Command:** `npm run build`
+2. **Build Output Directory:** `dist`
+3. **Custom Domain:** `www.quiktalkai.com` & `quiktalkai.com`
+4. **Preserve Email Records:** Keep MX records (`mx1.hostinger.com`, `mx2.hostinger.com`) and SPF TXT record intact.
