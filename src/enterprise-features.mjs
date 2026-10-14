@@ -13,7 +13,7 @@ export function enterpriseFeatures(icon) {
       id: 'usage', label: 'Usage', icon: 'people', title: 'AI employees for work',
       description: 'An AI employee that answers calls, helps your customers and handles what happens next.',
       tags: [['headset', 'Receptionist'], ['calendar', 'Bookings'], ['briefcase', 'Enquiries'], ['message', 'Follow-up']],
-      cta: 'Find a role for your business', href: '#ai-employees',
+      cta: 'Find a role for your business', href: '/services/ai-employees/',
     },
     {
       id: 'technology', label: 'Technology', icon: 'tools', title: 'Agentic workflows',

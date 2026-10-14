@@ -1,15 +1,16 @@
 # QuikTalk AI — Voice agents and AI employees
 
-A dependency-free, static marketing site with a voice-first home page and six industry demo pages.
+A dependency-free, static marketing site with a voice-first home page, an AI Employees service page and six industry demo pages.
 
 ## Build and preview
 
-Run `node scripts/build.mjs` to generate the seven HTML pages, sitemap and robots file. Then run `node scripts/preview.mjs` and open http://127.0.0.1:4173/. The preview serves the existing `dist/` files. Keep the process running while viewing the site; press Ctrl+C to stop it. To use another port in PowerShell, set `$env:PORT = 4174` before starting the preview and open http://127.0.0.1:4174/ instead.
+Run `node scripts/build.mjs` to generate the eight HTML pages, sitemap and robots file. Then run `node scripts/preview.mjs` and open http://127.0.0.1:4173/. The preview serves the existing `dist/` files. Keep the process running while viewing the site; press Ctrl+C to stop it. To use another port in PowerShell, set `$env:PORT = 4174` before starting the preview and open http://127.0.0.1:4174/ instead.
 
 There are no package dependencies. The browser receives ordinary HTML, shared CSS and a small progressive-enhancement script.
 
 ## Editing
 
+- `src/ai-employees.mjs`, `dist/ai-employees.css`: the dedicated AI Employees page, moved role content, visitor information, FAQs and structured data. See `docs/ai-employees.md`.
 - `src/services.mjs`, `dist/services.css`, `dist/assets/services-*.webp`: the approved Services section, original QuikTalk logo, four linked cards and static background grain. See `docs/services.md`.
 - `src/content.mjs`: six illustrative industry scenarios, AI employee roles, conversations, follow-up actions and human-handoff guidance.
 - `scripts/build.mjs`: shared header/footer, home-page sections, industry-page template and page-specific metadata.

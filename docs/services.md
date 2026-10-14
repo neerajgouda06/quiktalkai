@@ -2,7 +2,7 @@
 
 The Services section follows the voice statement and precedes Industry demos. The shared navigation now includes Services. Its two-column desktop grid becomes a single column at 809px and below.
 
-The four approved titles and descriptions are real HTML in `src/services.mjs`. AI Employees links to the existing employee roles, AI Infrastructure to the connected-tools section, AI Workflows to the existing follow-up section, and Web Development and Let’s talk to the existing enquiry destination. No form submission or new external service was added.
+The four approved titles and descriptions are real HTML in `src/services.mjs`. AI Employees links to the dedicated `/services/ai-employees/` page, AI Infrastructure to the connected-tools section, AI Workflows to the existing follow-up section, and Web Development and Let’s talk to the existing enquiry destination. No form submission or new external service was added.
 
 ## Artwork and texture
 
