@@ -29,9 +29,9 @@ export function integrations() {
           <div class="integration-conduit" aria-hidden="true"><i></i></div>
           <div class="integration-network-hub"><img src="/assets/quiktalk-headset.png" width="36" height="36" alt=""><span>QuikTalk AI</span></div>
           <svg class="integration-network-lines" viewBox="0 0 800 64" preserveAspectRatio="none" aria-hidden="true"><path d="${paths}"/><path class="integration-flow" d="${paths}"/></svg>
-          <ul class="integration-network-endpoints" aria-label="Connected integrations">${connections.map(item => `<li>${logoGroup(item)}<span>${item.name}</span></li>`).join('')}</ul>
+          <ul class="integration-network-endpoints" aria-label="Example tools to review for integration">${connections.map(item => `<li>${logoGroup(item)}<span>${item.name}</span></li>`).join('')}</ul>
         </div>
-        <p class="integration-setup-note">Connections and actions are configured around your business and agreed workflows.</p>
+        <p class="integration-setup-note">Example tools. Each connection depends on supported access, your software plan and the workflow we agree.</p>
       </div>
     </div>
   </section>`;

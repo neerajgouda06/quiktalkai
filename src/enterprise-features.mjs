@@ -25,7 +25,7 @@ export function enterpriseFeatures(icon) {
       id: 'data', label: 'Data', icon: 'note', title: 'Your knowledge. Your tools.',
       description: 'We connect your approved business information and confirm which tools work with your setup.',
       tags: [['calendar', 'Google Calendar'], ['people', 'HubSpot'], ['briefcase', 'Salesforce'], ['note', 'Xero']],
-      cta: 'Book a demo', href: 'https://www.quiktalkai.com/#demo',
+      cta: 'Explore AI infrastructure', href: '/services/ai-infrastructure/',
     },
   ];
   return `<section class="enterprise-features grain-surface" id="enterprise-features" aria-labelledby="features-title">${grain}
