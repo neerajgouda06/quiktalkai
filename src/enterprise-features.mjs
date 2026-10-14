@@ -19,7 +19,7 @@ export function enterpriseFeatures(icon) {
       id: 'technology', label: 'Technology', icon: 'tools', title: 'Agentic workflows',
       description: 'Connect calls to bookings, customer records and the next steps your team needs.',
       tags: [['phone', 'Voice agents'], ['note', 'Details saved'], ['message', 'Confirmations'], ['people', 'Human handoff']],
-      cta: 'See an example follow-up', href: '/industries/hospitality/#after-the-call',
+      cta: 'Explore AI workflows', href: '/services/ai-workflows/',
     },
     {
       id: 'data', label: 'Data', icon: 'note', title: 'Your knowledge. Your tools.',

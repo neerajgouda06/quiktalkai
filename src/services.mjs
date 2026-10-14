@@ -4,8 +4,8 @@ export function services(grain, book) {
   const items = [
     { slug: 'employees', title: 'AI Employees', description: 'Helpful AI for calls, bookings and customer support.', href: '/services/ai-employees/', image: '/assets/quiktalk-headset.png', width: 1280, height: 1280 },
     { slug: 'infrastructure', title: 'AI Infrastructure', description: 'Connect your tools, data and AI in one reliable system.', href: '/services/ai-infrastructure/', image: '/assets/services-infrastructure.webp', width: 900, height: 600 },
-    { slug: 'workflows', title: 'AI Workflows', description: 'Automate the repeat tasks that slow your team down.', href: '#ai-workflows', image: '/assets/services-workflows.webp', width: 900, height: 600 },
-    { slug: 'web-development', title: 'Web Development', description: 'Fast, clear websites designed around your customers.', href: book, image: '/assets/services-web-development.webp', width: 900, height: 600 },
+    { slug: 'workflows', title: 'AI Workflows', description: 'Automate the repeat tasks that slow your team down.', href: '/services/ai-workflows/', image: '/assets/services-workflows.webp', width: 900, height: 600 },
+    { slug: 'web-development', title: 'Web Development', description: 'Fast, clear websites designed around your customers.', href: '/services/web-development/', image: '/assets/services-web-development.webp', width: 900, height: 600 },
   ];
   return `<section class="services-section grain-surface" id="services" aria-labelledby="services-title">
     ${grain}
@@ -15,7 +15,7 @@ export function services(grain, book) {
         <p>AI employees, connected systems and websites.<br class="services-intro-break"> Built around your business.</p>
       </div>
       <div class="services-grid">
-        ${items.map((item, index) => `<a${item.slug === 'employees' ? ' id="ai-employees"' : item.slug === 'infrastructure' ? ' id="integrations"' : ''} class="service-card service-card--${item.slug} grain-surface" href="${item.href}">
+        ${items.map((item, index) => `<a${item.slug === 'employees' ? ' id="ai-employees"' : item.slug === 'infrastructure' ? ' id="integrations"' : item.slug === 'workflows' ? ' id="ai-workflows"' : ''} class="service-card service-card--${item.slug} grain-surface" href="${item.href}">
           ${grain}
           <span class="service-number" aria-hidden="true">0${index + 1}</span>
           <span class="service-art service-art--${item.slug}" aria-hidden="true">${item.slug === 'employees' ? '<span class="service-plinth"></span>' : ''}<img src="${item.image}" width="${item.width}" height="${item.height}" alt="" loading="lazy" decoding="async"></span>

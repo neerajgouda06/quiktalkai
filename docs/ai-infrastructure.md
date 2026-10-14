@@ -10,7 +10,7 @@ The service page explains AI infrastructure as the information, connections, per
 - `dist/ai-infrastructure.css`: responsive page styles. The approved server artwork is reused unchanged.
 - `src/integrations.mjs`: retained diagram and clarified example-tool note.
 - `src/services.mjs`: card destination and useful legacy fragment targets.
-- The home enterprise Data feature links to Infrastructure. The Employees page includes a contextual link; Infrastructure links back to Employees and the existing Workflows section.
+- The home enterprise Data feature links to Infrastructure. The Employees page includes a contextual link; Infrastructure links back to Employees and the dedicated Workflows page.
 - `scripts/build.mjs` emits nine HTML pages and adds Infrastructure to the sitemap. The homepage no longer loads integration-specific CSS or JavaScript.
 
 ## Search and answer-engine foundations

@@ -1,15 +1,16 @@
 # QuikTalk AI — Voice agents and AI employees
 
-A dependency-free, static marketing site with a voice-first home page, AI Employees and AI Infrastructure service pages, and six industry demo pages.
+A dependency-free, static marketing site with a voice-first home page, four dedicated service pages and six industry demo pages.
 
 ## Build and preview
 
-Run `node scripts/build.mjs` to generate the nine HTML pages, sitemap and robots file. Then run `node scripts/preview.mjs` and open http://127.0.0.1:4173/. The preview serves the existing `dist/` files. Keep the process running while viewing the site; press Ctrl+C to stop it. To use another port in PowerShell, set `$env:PORT = 4174` before starting the preview and open http://127.0.0.1:4174/ instead.
+Run `node scripts/build.mjs` to generate the eleven HTML pages, sitemap and robots file. Then run `node scripts/preview.mjs` and open http://127.0.0.1:4173/. The preview serves the existing `dist/` files. Keep the process running while viewing the site; press Ctrl+C to stop it. To use another port in PowerShell, set `$env:PORT = 4174` before starting the preview and open http://127.0.0.1:4174/ instead.
 
 There are no package dependencies. The browser receives ordinary HTML, shared CSS and a small progressive-enhancement script.
 
 ## Editing
 
+- `src/ai-workflows.mjs`, `src/web-development.mjs`, `src/service-detail.mjs`, `dist/service-details.css`: the Workflows and Web Development pages. The existing after-call example lives in `src/workflow-example.mjs`. See `docs/remaining-service-pages.md`.
 - `src/ai-infrastructure.mjs`, `dist/ai-infrastructure.css`: the dedicated Infrastructure page, moved ecosystem diagram, visitor explanations and search metadata. See `docs/ai-infrastructure.md`.
 - `src/ai-employees.mjs`, `dist/ai-employees.css`: the dedicated AI Employees page, moved role content, visitor information, FAQs and structured data. See `docs/ai-employees.md`.
 - `src/services.mjs`, `dist/services.css`, `dist/assets/services-*.webp`: the approved Services section, original QuikTalk logo, four linked cards and static background grain. See `docs/services.md`.
