@@ -1,0 +1,20 @@
+{
+  "name": "quiktalk",
+  "version": "1.0.0",
+  "description": "QuikTalk AI — Voice agents and AI employees static marketing site",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs",
+    "dev": "node scripts/preview.mjs",
+    "start": "node scripts/preview.mjs"
+  },
+  "keywords": [
+    "quiktalk",
+    "ai",
+    "voice-agents"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "private": true
+}

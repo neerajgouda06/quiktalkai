@@ -4,6 +4,12 @@ A dependency-free, static marketing site with a voice-first home page, four dedi
 
 ## Build and preview
 
+You can run the build and preview either with npm scripts:
+```bash
+npm run build    # Generates the eleven HTML pages, sitemap and robots file
+npm run preview  # Serves the site at http://127.0.0.1:4173/ (or npm start / npm run dev)
+```
+Or directly with Node:
 Run `node scripts/build.mjs` to generate the eleven HTML pages, sitemap and robots file. Then run `node scripts/preview.mjs` and open http://127.0.0.1:4173/. The preview serves the existing `dist/` files. Keep the process running while viewing the site; press Ctrl+C to stop it. To use another port in PowerShell, set `$env:PORT = 4174` before starting the preview and open http://127.0.0.1:4174/ instead.
 
 There are no package dependencies. The browser receives ordinary HTML, shared CSS and a small progressive-enhancement script.
