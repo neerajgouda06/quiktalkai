@@ -10,6 +10,7 @@ There are no package dependencies. The browser receives ordinary HTML, shared CS
 
 ## Editing
 
+- `src/services.mjs`, `dist/services.css`, `dist/assets/services-*.webp`: the approved Services section, original QuikTalk logo, four linked cards and static background grain. See `docs/services.md`.
 - `src/content.mjs`: six illustrative industry scenarios, AI employee roles, conversations, follow-up actions and human-handoff guidance.
 - `scripts/build.mjs`: shared header/footer, home-page sections, industry-page template and page-specific metadata.
 - `dist/styles.css`: design tokens, reflective glass material, layout, responsive rules and accessibility fallbacks.

@@ -217,10 +217,11 @@
   }
   function measureProcess() {
     if (!processGrid || processSteps.length < 2) return;
-    const points = processSteps.map(step => mobile.matches ? step.offsetTop : step.offsetLeft);
+    const points = processSteps.map(step => mobile.matches ? step.offsetTop : step.offsetLeft + step.offsetWidth / 2);
     processSpan = Math.max(1, points[points.length - 1] - points[0]);
     processThresholds = points.map(point => (point - points[0]) / processSpan);
     processGrid.style.setProperty('--process-span', `${processSpan}px`);
+    processGrid.style.setProperty('--process-start', `${points[0]}px`);
     requestUpdate();
   }
   if ('ResizeObserver' in window && header) new ResizeObserver(measureHeader).observe(header);

@@ -13,9 +13,9 @@ if (!Number.isInteger(port) || port < 1 || port > 65535) {
 
 let root;
 try {
-  root = await realpath(fileURLToPath(new URL('../dist/', import.meta.url)));
-} catch {
-  console.error('The dist folder is missing. Run node scripts/build.mjs first.');
+  root = await realpath(resolve(fileURLToPath(new URL('../dist/', import.meta.url))));
+} catch (error) {
+  console.error(`Unable to open the dist folder: ${error.message}`);
   process.exit(1);
 }
 
