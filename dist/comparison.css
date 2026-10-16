@@ -14,14 +14,15 @@
 .comparison-cell{padding:22px 28px;font-size:1rem;line-height:1.5}
 .comparison-table tbody th{font-weight:500;color:#f4f7f3}
 .comparison-table thead strong{display:block;font-size:1.25rem;font-weight:500;color:#f4f7f3;line-height:1.4}
-.comparison-table thead .comparison-cell>span,.comparison-brand>div>span{display:block;margin-top:3px;font-size:.875rem;color:#b9cdb6;line-height:1.5}
+.comparison-table thead strong+span,.comparison-brand>div>span{display:block;margin-top:3px;font-size:.875rem;color:#b9cdb6;line-height:1.5}
 .comparison-table td{color:#bec9c1}
 .comparison-table .comparison-ai{color:#f0f5ec;background:#82c87c0c;border-left:1px solid #a1d99465}
 .comparison-table thead .comparison-ai{border-top:1px solid #b3e89c;border-top-right-radius:23px}
 .comparison-table tbody tr:last-child .comparison-ai{border-bottom:1px solid #a1d99465;border-bottom-right-radius:23px}
 .comparison-brand{display:flex;align-items:center;gap:14px}
-.comparison-headset{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:50%;color:#b3e89c;background:#a1d9940c}
-.comparison-headset .icon{width:28px;height:28px}
+.comparison-headset{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:50%;color:#b3e89c;background:#a1d9940c;margin:0}
+.comparison-headset .icon{display:block;width:28px;height:28px}
+.comparison-headset img,.comparison-headset .comparison-headset-logo{display:block;width:34px;height:34px;object-fit:contain}
 .comparison-value{display:flex;align-items:center;gap:14px}
 .comparison-value>.icon{width:24px;height:24px;flex:0 0 24px;color:#92a097}
 .comparison-check{display:grid;place-items:center;width:30px;height:30px;flex:0 0 30px;color:#132510;background:#a1d994;border-radius:50%}
@@ -34,7 +35,7 @@
 .comparison-mobile-label{display:none}
 .comparison-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 @media(hover:hover) and (pointer:fine){.comparison-row .comparison-cell{transition:background-color 200ms}.comparison-row:hover .comparison-cell{background-color:#ffffff04}.comparison-row:hover .comparison-ai .comparison-cell{background-color:#a1d99409}}
-@media(max-width:1100px) and (min-width:810px){.comparison-cell{padding:20px 18px}.comparison-brand,.comparison-value{gap:10px}.comparison-headset{width:36px;height:36px;flex-basis:36px}.comparison-headset .icon{width:24px;height:24px}.comparison-table thead strong{font-size:1.125rem}}
+@media(max-width:1100px) and (min-width:810px){.comparison-cell{padding:20px 18px}.comparison-brand,.comparison-value{gap:10px}.comparison-headset{width:36px;height:36px;flex-basis:36px}.comparison-headset .icon{width:24px;height:24px}.comparison-headset img,.comparison-headset .comparison-headset-logo{width:26px;height:26px}.comparison-table thead strong{font-size:1.125rem}}
 @media(max-width:809px){
   .comparison-section{padding:64px 0 56px}.comparison-section .container{width:calc(100% - 40px)}
   .comparison-heading{margin-bottom:30px}.comparison-heading h2{font-size:clamp(32px,5.7vw,46px);margin:20px 0 14px;letter-spacing:-.03em}.comparison-heading p{font-size:1rem;max-width:440px;margin:auto}

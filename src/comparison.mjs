@@ -23,7 +23,7 @@ export function comparison(icon, button, book) {
           <thead role="rowgroup"><tr role="row">
             <th scope="col" role="columnheader"><span class="comparison-sr-only">What happens on your calls</span></th>
             <th scope="col" role="columnheader"><div class="comparison-cell"><strong>Typical call handling</strong><span>Your team handles each step</span></div></th>
-            <th scope="col" role="columnheader" class="comparison-ai"><div class="comparison-cell comparison-brand"><span class="comparison-headset">${icon('headset')}</span><div><strong>QuikTalk AI</strong><span>A helpful voice. A useful next step.</span></div></div></th>
+            <th scope="col" role="columnheader" class="comparison-ai"><div class="comparison-cell comparison-brand"><span class="comparison-headset"><img class="comparison-headset-logo" src="/assets/quiktalk-headset.png" width="34" height="34" alt="" loading="lazy" decoding="async"></span><div><strong>QuikTalk AI</strong><span>A helpful voice. A useful next step.</span></div></div></th>
           </tr></thead>
           <tbody role="rowgroup">${rows.map(([label, symbol, typical, ai]) => `<tr class="comparison-row" role="row">
             <th scope="row" role="rowheader"><div class="comparison-cell">${label}</div></th>
