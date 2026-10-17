@@ -155,4 +155,28 @@ const allPublicRoutes = [
 
 await writeFile(root + '/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${allPublicRoutes.map(path=>`<url><loc>${origin}${path}</loc></url>`).join('')}</urlset>`);
 await writeFile(root + '/robots.txt', `User-agent: *\nAllow: /\nDisallow: /404.html\nSitemap: ${origin}/sitemap.xml\n`);
+
+const redirectsContent = `# Cloudflare Pages Redirect Rules
+# Format: /source /destination [status]
+
+# Service routes trailing-slash normalization
+/services/ai-employees          /services/ai-employees/         301
+/services/ai-infrastructure     /services/ai-infrastructure/    301
+/services/ai-workflows          /services/ai-workflows/         301
+/services/web-development       /services/web-development/      301
+
+# Industry demo routes trailing-slash normalization
+/industries/trades              /industries/trades/             301
+/industries/healthcare          /industries/healthcare/         301
+/industries/real-estate         /industries/real-estate/        301
+/industries/automotive          /industries/automotive/         301
+/industries/hospitality         /industries/hospitality/        301
+/industries/professional-services /industries/professional-services/ 301
+
+# Legal routes trailing-slash normalization
+/privacy-policy                 /privacy-policy/                301
+/terms-of-service               /terms-of-service/              301
+`;
+await writeFile(root + '/_redirects', redirectsContent);
+
 console.log(`Built the home page, 404 page, four service pages, two legal pages, and ${industries.length} industry demo pages with origin "${origin}".`);
