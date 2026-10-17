@@ -10,7 +10,7 @@
     "start": "node scripts/preview.mjs",
     "test": "node scripts/test-audit.mjs",
     "validate": "node scripts/build.mjs && node scripts/test-audit.mjs",
-    "deploy": "wrangler pages deploy dist --project-name=quiktalkai"
+    "deploy": "wrangler deploy"
   },
   "engines": {
     "node": ">=18.0.0"

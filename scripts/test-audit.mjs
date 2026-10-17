@@ -178,7 +178,7 @@ const wranglerPath = resolve(root, 'wrangler.toml');
 assert(existsSync(wranglerPath), 'wrangler.toml exists in root');
 if (existsSync(wranglerPath)) {
   const wrangler = readFileSync(wranglerPath, 'utf8');
-  assert(wrangler.includes('pages_build_output_dir'), 'wrangler.toml specifies pages_build_output_dir');
+  assert(wrangler.includes('pages_build_output_dir') || wrangler.includes('[assets]'), 'wrangler.toml specifies output directory or assets');
   assert(wrangler.includes('quiktalkai'), 'wrangler.toml names project correctly');
 }
 
