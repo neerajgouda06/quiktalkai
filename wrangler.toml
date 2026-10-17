@@ -1,9 +1,7 @@
-# Cloudflare Configuration for QuikTalk AI
+# Cloudflare Pages Configuration for QuikTalk AI
 name = "quiktalkai"
 compatibility_date = "2024-10-01"
-
-[assets]
-directory = "./dist"
+pages_build_output_dir = "dist"
 
 [vars]
 SITE_URL = "https://www.quiktalkai.com"
